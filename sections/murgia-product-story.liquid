@@ -1,0 +1,266 @@
+<section class="murgia-story color-{{ section.settings.color_scheme }}">
+  <div class="murgia-story__inner page-width">
+    <header class="murgia-story__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="murgia-story__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.intro != blank %}
+        <div class="murgia-story__intro rte">{{ section.settings.intro }}</div>
+      {% endif %}
+    </header>
+
+    <div class="murgia-story__grid">
+      {% for block in section.blocks %}
+        <article class="murgia-story__card" {{ block.shopify_attributes }}>
+          <p class="murgia-story__number">0{{ forloop.index }}</p>
+          {% if block.settings.title != blank %}
+            <h3>{{ block.settings.title }}</h3>
+          {% endif %}
+          {% if block.settings.text != blank %}
+            <div class="rte">{{ block.settings.text }}</div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.serve_heading != blank or section.settings.serve_text != blank %}
+      <div class="murgia-story__serve">
+        <div>
+          <p class="murgia-story__eyebrow">{{ section.settings.serve_eyebrow }}</p>
+          <h2>{{ section.settings.serve_heading }}</h2>
+        </div>
+        <div class="murgia-story__serve-copy rte">{{ section.settings.serve_text }}</div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .murgia-story {
+    padding-block: clamp(72px, 10vw, 150px);
+  }
+
+  .murgia-story__inner {
+    display: grid;
+    gap: clamp(52px, 7vw, 96px);
+  }
+
+  .murgia-story__header {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(28px, 6vw, 100px);
+    align-items: end;
+  }
+
+  .murgia-story__header h2,
+  .murgia-story__serve h2 {
+    margin: 0;
+    max-width: 10ch;
+    font-size: clamp(3rem, 7vw, 7.5rem);
+    line-height: 0.88;
+    letter-spacing: -0.055em;
+    text-transform: uppercase;
+  }
+
+  .murgia-story__eyebrow {
+    margin: 0 0 18px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  .murgia-story__intro {
+    max-width: 52ch;
+    font-size: clamp(1rem, 1.45vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  .murgia-story__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid color-mix(in srgb, var(--color-foreground) 22%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 22%, transparent);
+  }
+
+  .murgia-story__card {
+    min-height: 300px;
+    padding: clamp(26px, 3vw, 48px);
+  }
+
+  .murgia-story__card + .murgia-story__card {
+    border-left: 1px solid color-mix(in srgb, var(--color-foreground) 22%, transparent);
+  }
+
+  .murgia-story__number {
+    margin: 0 0 clamp(50px, 8vw, 110px);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+  }
+
+  .murgia-story__card h3 {
+    margin: 0 0 16px;
+    font-size: clamp(1.45rem, 2.4vw, 2.5rem);
+    line-height: 0.98;
+    text-transform: uppercase;
+  }
+
+  .murgia-story__card .rte {
+    max-width: 34ch;
+    opacity: 0.78;
+  }
+
+  .murgia-story__serve {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: clamp(36px, 8vw, 120px);
+    align-items: end;
+    padding-top: clamp(24px, 4vw, 56px);
+  }
+
+  .murgia-story__serve-copy {
+    max-width: 48ch;
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
+    line-height: 1.65;
+  }
+
+  @media screen and (max-width: 749px) {
+    .murgia-story {
+      padding-block: 64px;
+    }
+
+    .murgia-story__header,
+    .murgia-story__serve {
+      grid-template-columns: 1fr;
+    }
+
+    .murgia-story__header h2,
+    .murgia-story__serve h2 {
+      font-size: clamp(2.8rem, 15vw, 4.8rem);
+    }
+
+    .murgia-story__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .murgia-story__card {
+      min-height: 0;
+      padding: 30px 0;
+    }
+
+    .murgia-story__card + .murgia-story__card {
+      border-left: 0;
+      border-top: 1px solid color-mix(in srgb, var(--color-foreground) 22%, transparent);
+    }
+
+    .murgia-story__number {
+      margin-bottom: 42px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Murgia — Racconto prodotto",
+  "tag": "section",
+  "class": "section-murgia-product-story",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Schema colori",
+      "default": "scheme-2"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sopratitolo",
+      "default": "Il carattere"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "Botaniche di Puglia"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introduzione",
+      "default": "<p>Un aperitivo botanico dal profilo mediterraneo: aromatico, equilibrato e pensato per accompagnare il rito dell’aperitivo.</p>"
+    },
+    {
+      "type": "text",
+      "id": "serve_eyebrow",
+      "label": "Sopratitolo degustazione",
+      "default": "Come servirlo"
+    },
+    {
+      "type": "text",
+      "id": "serve_heading",
+      "label": "Titolo degustazione",
+      "default": "Freddo. Semplice. Murgia."
+    },
+    {
+      "type": "richtext",
+      "id": "serve_text",
+      "label": "Testo degustazione",
+      "default": "<p>Servilo ben freddo con ghiaccio e una scorza di agrume, oppure usalo come base per uno spritz dal carattere mediterraneo.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "Nota aromatica",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo",
+          "default": "Erbe mediterranee"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Testo",
+          "default": "<p>Rosmarino, salvia e timo costruiscono una trama aromatica riconoscibile e persistente.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Murgia — Racconto prodotto",
+      "blocks": [
+        {
+          "type": "note",
+          "settings": {
+            "title": "Erbe mediterranee",
+            "text": "<p>Rosmarino, salvia e timo costruiscono una trama aromatica riconoscibile e persistente.</p>"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "title": "Fiori e spezie",
+            "text": "<p>Camomilla, cardamomo e rosa aggiungono profondità senza appesantire il sorso.</p>"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "title": "Equilibrio",
+            "text": "<p>Amarena e note amare chiudono il profilo con una freschezza pulita e accessibile.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
