@@ -536,6 +536,47 @@
         "serve_text": "<p>Servilo ben freddo con ghiaccio e una scorza di agrume, oppure usalo come base per uno spritz dal carattere mediterraneo.</p>"
       }
     }
+      },
+    "murgia_product_story": {
+      "type": "murgia-product-story",
+      "blocks": {
+        "note_1": {
+          "type": "note",
+          "settings": {
+            "title": "Erbe mediterranee",
+            "text": "<p>Rosmarino, salvia e timo costruiscono una trama aromatica riconoscibile e persistente.</p>"
+          }
+        },
+        "note_2": {
+          "type": "note",
+          "settings": {
+            "title": "Fiori e spezie",
+            "text": "<p>Camomilla, cardamomo e rosa aggiungono profondità senza appesantire il sorso.</p>"
+          }
+        },
+        "note_3": {
+          "type": "note",
+          "settings": {
+            "title": "Equilibrio",
+            "text": "<p>Amarena e note amare chiudono il profilo con una freschezza pulita e accessibile.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "note_1",
+        "note_2",
+        "note_3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Il carattere",
+        "heading": "Botaniche di Puglia",
+        "intro": "<p>Un aperitivo botanico dal profilo mediterraneo: aromatico, equilibrato e pensato per accompagnare il rito dell’aperitivo.</p>",
+        "serve_eyebrow": "Come servirlo",
+        "serve_heading": "Freddo. Semplice. Murgia.",
+        "serve_text": "<p>Servilo ben freddo con ghiaccio e una scorza di agrume, oppure usalo come base per uno spritz dal carattere mediterraneo.</p>"
+      }
+    }
   },
   "order": [
     "main",
