@@ -1,0 +1,506 @@
+<section
+  id="MurgiaEditorial-{{ section.id }}"
+  class="murgia-editorial"
+  style="
+    --editorial-background: {{ section.settings.background_color }};
+    --editorial-text: {{ section.settings.text_color }};
+    --editorial-accent: {{ section.settings.accent_color }};
+  "
+>
+  <div class="murgia-editorial__grid">
+    <div class="murgia-editorial__media">
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 1800
+          | image_tag:
+            class: 'murgia-editorial__image',
+            widths: '600, 900, 1200, 1500, 1800',
+            sizes: '(max-width: 749px) 100vw, 43vw',
+            loading: 'lazy'
+        }}
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'murgia-editorial__placeholder' }}
+      {% endif %}
+    </div>
+
+    <div class="murgia-editorial__content">
+      <div class="murgia-editorial__copy">
+        {% if section.settings.eyebrow != blank %}
+          <p class="murgia-editorial__eyebrow">
+            {{ section.settings.eyebrow }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="murgia-editorial__heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="murgia-editorial__description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.highlight != blank %}
+          <p class="murgia-editorial__highlight">
+            {{ section.settings.highlight }}
+          </p>
+        {% endif %}
+      </div>
+
+      {% if section.blocks.size > 0 %}
+        <div class="murgia-editorial__features">
+          {% for block in section.blocks %}
+            <article
+              class="murgia-editorial__feature"
+              {{ block.shopify_attributes }}
+            >
+              <div class="murgia-editorial__icon" aria-hidden="true">
+                {% case block.settings.icon %}
+                  {% when 'botanicals' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M39 9C26 10 15 15 11 27c-2 6 1 12 7 13 12 2 19-12 21-31Z" stroke="currentColor" stroke-width="1.7"/>
+                      <path d="M10 39c8-10 15-16 26-24M20 29c1-4 1-7 0-10M26 24c4 0 7 1 10 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    </svg>
+
+                  {% when 'glass' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M15 8h18l-2 15a7 7 0 0 1-7 6 7 7 0 0 1-7-6L15 8Z" stroke="currentColor" stroke-width="1.7"/>
+                      <path d="M17 17h14M24 29v10M18 40h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    </svg>
+
+                  {% when 'sparkle' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M24 7c1 10 5 14 15 15-10 1-14 5-15 15-1-10-5-14-15-15 10-1 14-5 15-15Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                      <path d="M38 7c.4 4 2 5.6 6 6-4 .4-5.6 2-6 6-.4-4-2-5.6-6-6 4-.4 5.6-2 6-6Z" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+
+                  {% else %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="24" r="15" stroke="currentColor" stroke-width="1.7"/>
+                      <path d="M24 16v9l6 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    </svg>
+                {% endcase %}
+              </div>
+
+              {% if block.settings.title != blank %}
+                <h3 class="murgia-editorial__feature-title">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="murgia-editorial__feature-text">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a
+          class="murgia-editorial__button"
+          href="{{ section.settings.button_link | default: '#' }}"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    background: var(--editorial-background);
+  }
+
+  .murgia-editorial {
+    width: 100%;
+    overflow: hidden;
+    background: var(--editorial-background);
+    color: var(--editorial-text);
+  }
+
+  .murgia-editorial__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+    min-height: 820px;
+  }
+
+  .murgia-editorial__media {
+    position: relative;
+    min-height: 820px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .murgia-editorial__image,
+  .murgia-editorial__placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .murgia-editorial__content {
+    padding:
+      clamp(70px, 8vw, 130px)
+      clamp(50px, 7vw, 120px)
+      clamp(60px, 7vw, 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .murgia-editorial__copy {
+    max-width: 800px;
+  }
+
+  .murgia-editorial__eyebrow {
+    margin: 0 0 24px;
+    color: var(--editorial-accent);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+
+  .murgia-editorial__heading {
+    max-width: 760px;
+    margin: 0 0 34px;
+    color: var(--editorial-text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(50px, 5vw, 78px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .murgia-editorial__description {
+    max-width: 780px;
+    font-size: clamp(17px, 1.35vw, 22px);
+    line-height: 1.55;
+  }
+
+  .murgia-editorial__description p {
+    margin: 0 0 20px;
+  }
+
+  .murgia-editorial__description strong {
+    font-weight: 700;
+  }
+
+  .murgia-editorial__highlight {
+    margin: 28px 0 0;
+    color: var(--editorial-accent);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(22px, 2vw, 30px);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .murgia-editorial__features {
+    width: 100%;
+    margin-top: clamp(50px, 6vw, 80px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 56px);
+  }
+
+  .murgia-editorial__feature {
+    text-align: center;
+  }
+
+  .murgia-editorial__icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 20px;
+    display: grid;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--editorial-accent) 35%, transparent);
+    border-radius: 50%;
+    color: var(--editorial-accent);
+  }
+
+  .murgia-editorial__icon svg {
+    width: 29px;
+    height: 29px;
+  }
+
+  .murgia-editorial__feature-title {
+    margin: 0 0 9px;
+    color: var(--editorial-text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .murgia-editorial__feature-text {
+    max-width: 230px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .murgia-editorial__feature-text p {
+    margin: 0;
+  }
+
+  .murgia-editorial__button {
+    width: fit-content;
+    margin-top: 48px;
+    padding: 17px 28px;
+    border: 1px solid var(--editorial-accent);
+    color: var(--editorial-accent);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .murgia-editorial__button:hover {
+    background: var(--editorial-accent);
+    color: var(--editorial-background);
+  }
+
+  @media screen and (max-width: 989px) {
+    .murgia-editorial__grid {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .murgia-editorial__media {
+      min-height: min(105vw, 760px);
+    }
+
+    .murgia-editorial__content {
+      padding: 64px 40px 70px;
+    }
+
+    .murgia-editorial__features {
+      gap: 28px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .murgia-editorial__media {
+      min-height: 120vw;
+      max-height: 680px;
+    }
+
+    .murgia-editorial__content {
+      padding: 52px 22px 60px;
+    }
+
+    .murgia-editorial__eyebrow {
+      margin-bottom: 18px;
+      font-size: 10px;
+    }
+
+    .murgia-editorial__heading {
+      margin-bottom: 26px;
+      font-size: clamp(42px, 13vw, 58px);
+    }
+
+    .murgia-editorial__description {
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .murgia-editorial__highlight {
+      margin-top: 24px;
+      font-size: 23px;
+    }
+
+    .murgia-editorial__features {
+      margin-top: 48px;
+      grid-template-columns: 1fr;
+      gap: 38px;
+    }
+
+    .murgia-editorial__feature-text {
+      max-width: 290px;
+    }
+
+    .murgia-editorial__button {
+      width: 100%;
+      margin-top: 42px;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Murgia Editorial",
+  "tag": "section",
+  "class": "murgia-editorial-section",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Immagine"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine prodotto"
+    },
+    {
+      "type": "header",
+      "content": "Testi"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etichetta",
+      "default": "IL PRODOTTO"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "Più di un aperitivo."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descrizione",
+      "default": "<p>Un blend di <strong>8 botaniche selezionate</strong> che danno vita a un prodotto unico: fresco, aromatico, leggermente fruttato, con un finale amaricante elegante.</p><p>Il suo colore <strong>VIOLA</strong> intenso viene dalla natura, non da artifici.</p><p>Perfetto con bollicine, sorprendente nei cocktail, iconico nello spritz.</p>"
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Frase in evidenza",
+      "default": "Murgia non segue le regole. Le riscrive!"
+    },
+    {
+      "type": "header",
+      "content": "Pulsante opzionale"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Etichetta pulsante"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link pulsante"
+    },
+    {
+      "type": "header",
+      "content": "Colori"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Sfondo",
+      "default": "#ede0cd"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Testo",
+      "default": "#3d285d"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Colore accento",
+      "default": "#412263"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Caratteristica",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "options": [
+            {
+              "value": "botanicals",
+              "label": "Botaniche"
+            },
+            {
+              "value": "glass",
+              "label": "Calice"
+            },
+            {
+              "value": "sparkle",
+              "label": "Scintilla"
+            },
+            {
+              "value": "circle",
+              "label": "Cerchio"
+            }
+          ],
+          "default": "botanicals"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo",
+          "default": "Botaniche mediterranee"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Testo",
+          "default": "<p>Otto ingredienti selezionati per creare un profilo aromatico unico e riconoscibile.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Murgia Editorial",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "botanicals",
+            "title": "Botaniche mediterranee",
+            "text": "<p>Otto ingredienti selezionati per creare un profilo aromatico unico e riconoscibile.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "glass",
+            "title": "Spritz & Cocktail",
+            "text": "<p>Versatile per natura. Perfetto nello Spritz, sorprendente in ogni twist.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "title": "20% Vol.",
+            "text": "<p>Struttura, freschezza e bevibilità in perfetto equilibrio.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
