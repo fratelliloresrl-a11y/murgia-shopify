@@ -49,21 +49,22 @@
   }
 
   .murgia-story__header {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    gap: clamp(28px, 6vw, 100px);
-    align-items: end;
-  }
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: end;
+  padding-inline: clamp(24px, 4vw, 72px);
+}
 
   .murgia-story__header h2,
-  .murgia-story__serve h2 {
-    margin: 0;
-    max-width: 10ch;
-    font-size: clamp(3rem, 7vw, 7.5rem);
-    line-height: 0.88;
-    letter-spacing: -0.055em;
-    text-transform: uppercase;
-  }
+.murgia-story__serve h2 {
+  margin: 0;
+  max-width: 9ch;
+  font-size: clamp(3rem, 5.4vw, 6.2rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
 
   .murgia-story__eyebrow {
     margin: 0 0 18px;
@@ -75,10 +76,10 @@
   }
 
   .murgia-story__intro {
-    max-width: 52ch;
-    font-size: clamp(1rem, 1.45vw, 1.35rem);
-    line-height: 1.55;
-  }
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.6;
+}
 
   .murgia-story__grid {
     display: grid;
