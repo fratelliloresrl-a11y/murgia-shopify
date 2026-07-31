@@ -170,8 +170,8 @@
   .murgia-hero__content {
     width: min(calc(100% - 48px), var(--murgia-content-width));
     min-height: var(--murgia-min-height);
-    margin: 0 auto;
-    padding: clamp(150px, 19vh, 240px) 0 clamp(54px, 8vh, 100px);
+   margin: 0 auto;
+   padding: clamp(120px, 14vh, 170px) 0 46px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -180,12 +180,13 @@
   }
 
   .murgia-hero__brand {
-    margin: auto 0;
-  }
+  margin: auto 0 40px;
+  transform: translateY(-3vh);
+}
 
   .murgia-hero__logo {
     display: block;
-    width: min(72vw, 720px);
+    width: min(58vw, 650px);
     height: auto;
     margin: 0 auto;
   }
@@ -210,7 +211,8 @@
   }
 
   .murgia-hero__story {
-    width: min(100%, 740px);
+    width:  min(100%, 740px);
+  padding-bottom: 20px;
   }
 
   .murgia-hero__payoff {
