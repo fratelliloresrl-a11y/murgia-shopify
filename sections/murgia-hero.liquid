@@ -253,33 +253,34 @@
   }
 
   .murgia-hero__button {
-    min-width: 220px;
-    padding: 18px 28px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    transition:
-      background-color 180ms ease,
-      color 180ms ease,
-      border-color 180ms ease;
-  }
+  min-width: 250px;
+  padding: 18px 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
 
   .murgia-hero__button--primary {
-    background: #d96773;
-    border-color: #d96773;
-  }
+  background: #cf6b76;
+  border-color: #cf6b76;
+}
 
   .murgia-hero__button--secondary {
-    background: rgba(20, 15, 14, 0.22);
-    backdrop-filter: blur(8px);
-  }
+  background: rgba(18, 14, 13, 0.52);
+  backdrop-filter: blur(8px);
+}
 
   .murgia-hero__button:hover {
     background: #fff;
@@ -359,9 +360,16 @@
     }
 
     .murgia-hero__payoff {
-      gap: 10px;
-      font-size: 16px;
-    }
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(17px, 1.45vw, 23px);
+  font-style: italic;
+  line-height: 1.35;
+}
 
     .murgia-hero__payoff span {
       width: 24px;
@@ -402,10 +410,11 @@
 }
 
 .murgia-hero__story {
-  width: min(100%, 740px);
-  padding-bottom: 12px;
-  transform: translateY(-34px);
+  width: min(100%, 760px);
+  padding-bottom: 26px;
+  transform: translateY(-24px);
 }
+
 .murgia-hero__brand {
   transform: translateY(-4vh);
 }
