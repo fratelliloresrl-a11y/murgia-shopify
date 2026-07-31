@@ -9,6 +9,27 @@
  */
 {
   "sections": {
+    "murgia_hero_HyrJai": {
+      "type": "murgia-hero",
+      "name": "Murgia Hero",
+      "settings": {
+        "desktop_image": "shopify://shop_images/hero-bouquet.png",
+        "mobile_image": "shopify://shop_images/hero-bouquet.png",
+        "overlay_opacity": 35,
+        "desktop_height": 100,
+        "content_width": 1400,
+        "central_logo": "shopify://shop_images/logo-murgia.png",
+        "title": "",
+        "subtitle": "Aperitivo di Puglia",
+        "payoff": "L’anima della Puglia, il nuovo colore dell’aperitivo.",
+        "description": "<p>Botaniche pugliesi e mixology innovativa in una bottiglia.</p>",
+        "primary_label": "Acquista ora",
+        "primary_link": "",
+        "secondary_label": "Scopri la storia",
+        "secondary_link": "",
+        "show_scroll": false
+      }
+    },
     "hero_RkimKJ": {
       "type": "hero",
       "blocks": {
@@ -100,6 +121,7 @@
       "block_order": [
         "group_3cB4GW"
       ],
+      "disabled": true,
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
@@ -598,6 +620,7 @@
     }
   },
   "order": [
+    "murgia_hero_HyrJai",
     "hero_RkimKJ",
     "product_list_X8Q7bi",
     "section_RhpYRt"
