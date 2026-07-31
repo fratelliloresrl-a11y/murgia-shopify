@@ -664,11 +664,61 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "murgia_botaniche_nMnHYR": {
+      "type": "murgia-botaniche",
+      "blocks": {
+        "botanica_YQPEyG": {
+          "type": "botanica",
+          "settings": {
+            "title": "Rosmarino",
+            "text": "<p>Aromatico e balsamico, racconta il carattere mediterraneo di Murgia.</p>"
+          }
+        },
+        "botanica_DX4m73": {
+          "type": "botanica",
+          "settings": {
+            "title": "Alloro",
+            "text": "<p>Verde, intenso e strutturato. Dona profondità al sorso.</p>"
+          }
+        },
+        "botanica_93VgRj": {
+          "type": "botanica",
+          "settings": {
+            "title": "Camomilla",
+            "text": "<p>Floreale e delicata, accompagna le note amare con morbidezza.</p>"
+          }
+        },
+        "botanica_3FXEbB": {
+          "type": "botanica",
+          "settings": {
+            "title": "Amarena",
+            "text": "<p>Fruttata e vibrante, firma il colore e la freschezza del prodotto.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "botanica_YQPEyG",
+        "botanica_DX4m73",
+        "botanica_93VgRj",
+        "botanica_3FXEbB"
+      ],
+      "name": "Murgia Botaniche",
+      "settings": {
+        "eyebrow": "LE BOTANICHE",
+        "heading": "La Puglia dentro ogni sorso.",
+        "intro": "<p>Erbe, fiori e frutti si incontrano in un equilibrio aromatico pensato per sorprendere senza perdere autenticità.</p>",
+        "footer_text": "<p>Otto botaniche. Un'identità inconfondibile.</p>",
+        "background_color": "#3d285d",
+        "text_color": "#f2e7d5",
+        "accent_color": "#e4b0b6"
+      }
     }
   },
   "order": [
     "murgia_hero_HyrJai",
     "murgia_editorial_8FXtwY",
+    "murgia_botaniche_nMnHYR",
     "hero_RkimKJ",
     "product_list_X8Q7bi",
     "section_RhpYRt"
