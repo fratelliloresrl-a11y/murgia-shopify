@@ -1,77 +1,87 @@
 <section
-  class="murgia-botaniche"
+  id="MurgiaBotaniche-{{ section.id }}"
+  class="murgia-botaniche-interactive"
   style="
-    --botaniche-bg: {{ section.settings.background_color }};
-    --botaniche-text: {{ section.settings.text_color }};
-    --botaniche-accent: {{ section.settings.accent_color }};
+    --bot-bg: {{ section.settings.background_color }};
+    --bot-text: {{ section.settings.text_color }};
+    --bot-accent: {{ section.settings.accent_color }};
   "
 >
-  <div class="murgia-botaniche__inner">
-    <header class="murgia-botaniche__header">
-      {% if section.settings.eyebrow != blank %}
-        <p class="murgia-botaniche__eyebrow">
-          {{ section.settings.eyebrow }}
-        </p>
-      {% endif %}
+  <div class="murgia-botaniche-interactive__inner">
+    <header class="murgia-botaniche-interactive__header">
+      <div>
+        {% if section.settings.eyebrow != blank %}
+          <p class="murgia-botaniche-interactive__eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
 
-      {% if section.settings.heading != blank %}
-        <h2 class="murgia-botaniche__heading">
-          {{ section.settings.heading }}
-        </h2>
-      {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="murgia-botaniche-interactive__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+      </div>
 
       {% if section.settings.intro != blank %}
-        <div class="murgia-botaniche__intro">
+        <div class="murgia-botaniche-interactive__intro rte">
           {{ section.settings.intro }}
         </div>
       {% endif %}
     </header>
 
-    <div class="murgia-botaniche__grid">
-      {% for block in section.blocks %}
-        <article
-          class="murgia-botanica"
-          {{ block.shopify_attributes }}
+    {% if section.blocks.size > 0 %}
+      <div class="murgia-botaniche-interactive__tabs" role="tablist" aria-label="Botaniche">
+        {% for block in section.blocks %}
+          <button
+            class="murgia-botaniche-interactive__tab{% if forloop.first %} is-active{% endif %}"
+            type="button"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-controls="MurgiaBotanicaPanel-{{ section.id }}"
+            data-botanica-title="{{ block.settings.title | escape }}"
+            data-botanica-text="{{ block.settings.text | strip_html | escape }}"
+            {{ block.shopify_attributes }}
+          >
+            <span class="murgia-botaniche-interactive__index">
+              {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+            </span>
+            <span>{{ block.settings.title }}</span>
+          </button>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="murgia-botaniche-interactive__media">
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 2400
+          | image_tag:
+            class: 'murgia-botaniche-interactive__image',
+            widths: '750, 1100, 1500, 2000, 2400',
+            sizes: '100vw',
+            loading: 'lazy'
+        }}
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'murgia-botaniche-interactive__placeholder' }}
+      {% endif %}
+
+      <div class="murgia-botaniche-interactive__shade"></div>
+
+      {% if section.blocks.size > 0 %}
+        {% assign first_block = section.blocks.first %}
+        <div
+          id="MurgiaBotanicaPanel-{{ section.id }}"
+          class="murgia-botaniche-interactive__panel"
+          role="tabpanel"
+          aria-live="polite"
         >
-          <div class="murgia-botanica__media">
-            {% if block.settings.image != blank %}
-              {{
-                block.settings.image
-                | image_url: width: 1200
-                | image_tag:
-                  class: 'murgia-botanica__image',
-                  widths: '400, 600, 800, 1000, 1200',
-                  sizes: '(max-width: 749px) 100vw, 25vw',
-                  loading: 'lazy'
-              }}
-            {% else %}
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'murgia-botanica__placeholder' }}
-            {% endif %}
-
-            <div class="murgia-botanica__overlay"></div>
-
-            <div class="murgia-botanica__number">
-              0{{ forloop.index }}
-            </div>
-
-            <div class="murgia-botanica__content">
-              {% if block.settings.title != blank %}
-                <h3>{{ block.settings.title }}</h3>
-              {% endif %}
-
-              {% if block.settings.text != blank %}
-                <div class="murgia-botanica__text">
-                  {{ block.settings.text }}
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </article>
-      {% endfor %}
+          <p class="murgia-botaniche-interactive__panel-label">{{ section.settings.panel_label }}</p>
+          <h3 data-botanica-panel-title>{{ first_block.settings.title }}</h3>
+          <p data-botanica-panel-text>{{ first_block.settings.text | strip_html }}</p>
+        </div>
+      {% endif %}
     </div>
 
     {% if section.settings.footer_text != blank %}
-      <div class="murgia-botaniche__footer">
+      <div class="murgia-botaniche-interactive__footer rte">
         {{ section.settings.footer_text }}
       </div>
     {% endif %}
@@ -79,209 +89,263 @@
 </section>
 
 <style>
-  .murgia-botaniche {
+  #shopify-section-{{ section.id }} { background: var(--bot-bg); }
+
+  .murgia-botaniche-interactive {
     overflow: hidden;
-    background: var(--botaniche-bg);
-    color: var(--botaniche-text);
+    background: var(--bot-bg);
+    color: var(--bot-text);
   }
 
-  .murgia-botaniche__inner {
-    padding: 60px 0 0;
-}
-  .murgia-botaniche__header {
+  .murgia-botaniche-interactive__inner {
+    padding: clamp(72px, 8vw, 128px) 0;
+  }
+
+  .murgia-botaniche-interactive__header {
     width: min(calc(100% - 48px), 1380px);
-    margin: 0 auto clamp(46px, 6vw, 86px);
+    margin: 0 auto clamp(44px, 5vw, 72px);
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(30px, 6vw, 100px);
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
+    gap: clamp(34px, 7vw, 120px);
     align-items: end;
   }
 
-  .murgia-botaniche__eyebrow {
+  .murgia-botaniche-interactive__eyebrow,
+  .murgia-botaniche-interactive__panel-label {
     margin: 0 0 18px;
-    color: var(--botaniche-accent);
-    font-size: 11px;
+    color: var(--bot-accent);
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.32em;
     text-transform: uppercase;
   }
 
-  .murgia-botaniche__heading {
-    max-width: 780px;
+  .murgia-botaniche-interactive__heading {
+    max-width: 820px;
     margin: 0;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(48px, 5.6vw, 88px);
+    font-size: clamp(48px, 5.4vw, 86px);
     font-style: italic;
     font-weight: 400;
     line-height: 0.98;
     letter-spacing: -0.045em;
   }
 
-  .murgia-botaniche__intro {
+  .murgia-botaniche-interactive__intro {
     max-width: 560px;
-    font-size: clamp(17px, 1.4vw, 22px);
+    font-size: clamp(17px, 1.35vw, 21px);
     line-height: 1.6;
   }
 
-  .murgia-botaniche__intro p,
-  .murgia-botaniche__footer p {
-    margin: 0;
-  }
+  .murgia-botaniche-interactive__intro p,
+  .murgia-botaniche-interactive__footer p { margin: 0; }
 
-  .murgia-botaniche__grid {
+  .murgia-botaniche-interactive__tabs {
+    width: min(calc(100% - 48px), 1380px);
+    margin: 0 auto clamp(30px, 4vw, 48px);
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid color-mix(in srgb, var(--bot-text) 24%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--bot-text) 24%, transparent);
   }
 
-  .murgia-botanica {
+  .murgia-botaniche-interactive__tab {
     min-width: 0;
+    padding: 20px 18px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    border: 0;
+    border-right: 1px solid color-mix(in srgb, var(--bot-text) 18%, transparent);
+    background: transparent;
+    color: var(--bot-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: clamp(15px, 1.25vw, 19px);
+    text-align: left;
+    transition: color 180ms ease, opacity 180ms ease, background-color 180ms ease;
   }
 
-  .murgia-botanica__media {
+  .murgia-botaniche-interactive__tab:nth-child(4n) { border-right: 0; }
+
+  .murgia-botaniche-interactive__tab:hover,
+  .murgia-botaniche-interactive__tab.is-active {
+    color: var(--bot-accent);
+    background: color-mix(in srgb, var(--bot-text) 4%, transparent);
+  }
+
+  .murgia-botaniche-interactive__tabs:hover .murgia-botaniche-interactive__tab:not(:hover):not(.is-active) {
+    opacity: 0.45;
+  }
+
+  .murgia-botaniche-interactive__index {
+    flex: 0 0 auto;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    opacity: 0.62;
+  }
+
+  .murgia-botaniche-interactive__media {
     position: relative;
-    min-height: 480px;
+    min-height: min(72vw, 840px);
     overflow: hidden;
-    background: #24172f;
+    background: #1c1224;
   }
 
-  .murgia-botanica__image,
-  .murgia-botanica__placeholder {
-    width: 100%;
-    height: 100%;
+  .murgia-botaniche-interactive__image,
+  .murgia-botaniche-interactive__placeholder {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
     display: block;
     object-fit: cover;
-    transition: transform 700ms cubic-bezier(.2, .65, .25, 1);
   }
 
-  .murgia-botanica:hover .murgia-botanica__image {
-    transform: scale(1.045);
-  }
-
-  .murgia-botanica__overlay {
+  .murgia-botaniche-interactive__shade {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(
-        180deg,
-        rgba(16, 9, 20, 0.06) 20%,
-        rgba(16, 9, 20, 0.82) 100%
-      );
+      linear-gradient(90deg, rgba(20, 11, 24, 0.72) 0%, rgba(20, 11, 24, 0.18) 52%, rgba(20, 11, 24, 0.06) 100%),
+      linear-gradient(180deg, rgba(20, 11, 24, 0.02) 45%, rgba(20, 11, 24, 0.36) 100%);
   }
 
-  .murgia-botanica__number {
+  .murgia-botaniche-interactive__panel {
     position: absolute;
-    top: 24px;
-    left: 24px;
+    left: clamp(24px, 6vw, 110px);
+    bottom: clamp(28px, 7vw, 100px);
     z-index: 2;
+    width: min(calc(100% - 48px), 520px);
+    padding: clamp(24px, 3vw, 42px);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    background: rgba(22, 13, 27, 0.46);
     color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    opacity: 0.75;
+    backdrop-filter: blur(10px);
   }
 
-  .murgia-botanica__content {
-    position: absolute;
-    right: 28px;
-    bottom: 34px;
-    left: 28px;
-    z-index: 2;
-    color: #fff;
-  }
-
-  .murgia-botanica__content h3 {
-    margin: 0 0 13px;
+  .murgia-botaniche-interactive__panel h3 {
+    margin: 0 0 14px;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(28px, 2.5vw, 42px);
+    font-size: clamp(38px, 4vw, 66px);
     font-style: italic;
     font-weight: 400;
     line-height: 1;
   }
 
-  .murgia-botanica__text {
-    max-width: 30ch;
-    font-size: 14px;
-    line-height: 1.55;
-    opacity: 0.88;
-  }
-
-  .murgia-botanica__text p {
+  .murgia-botaniche-interactive__panel p:last-child {
+    max-width: 42ch;
     margin: 0;
+    font-size: clamp(15px, 1.15vw, 18px);
+    line-height: 1.6;
   }
 
-  .murgia-botaniche__footer {
-    width: min(calc(100% - 48px), 920px);
-    margin: clamp(44px, 6vw, 80px) auto 0;
-    color: var(--botaniche-accent);
+  .murgia-botaniche-interactive__footer {
+    width: min(calc(100% - 48px), 960px);
+    margin: clamp(44px, 6vw, 76px) auto 0;
+    color: var(--bot-accent);
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(24px, 2.8vw, 42px);
+    font-size: clamp(25px, 2.7vw, 40px);
     font-style: italic;
     line-height: 1.25;
     text-align: center;
   }
 
   @media screen and (max-width: 989px) {
-    .murgia-botaniche__header {
+    .murgia-botaniche-interactive__header {
       grid-template-columns: 1fr;
       gap: 26px;
     }
 
-    .murgia-botaniche__grid {
+    .murgia-botaniche-interactive__tabs {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .murgia-botanica__media {
-      min-height: 560px;
-    }
+    .murgia-botaniche-interactive__tab:nth-child(2n) { border-right: 0; }
+
+    .murgia-botaniche-interactive__media { min-height: 760px; }
   }
 
   @media screen and (max-width: 749px) {
-    .murgia-botaniche__inner {
-  padding: 48px 0 0;
-}
+    .murgia-botaniche-interactive__inner { padding: 64px 0; }
 
-    .murgia-botaniche__header {
+    .murgia-botaniche-interactive__header,
+    .murgia-botaniche-interactive__tabs {
       width: calc(100% - 40px);
-      margin-bottom: 40px;
     }
 
-    .murgia-botaniche__heading {
+    .murgia-botaniche-interactive__heading {
       font-size: clamp(42px, 13vw, 60px);
     }
 
-    .murgia-botaniche__intro {
-      font-size: 17px;
+    .murgia-botaniche-interactive__intro { font-size: 17px; }
+
+    .murgia-botaniche-interactive__tabs {
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 24px;
     }
 
-    .murgia-botaniche__grid {
-      grid-template-columns: 1fr;
-      gap: 1px;
+    .murgia-botaniche-interactive__tab {
+      padding: 16px 10px;
+      font-size: 14px;
     }
 
-    .murgia-botanica__media {
-      min-height: 118vw;
-      max-height: 650px;
+    .murgia-botaniche-interactive__media {
+      min-height: 135vw;
+      max-height: 760px;
     }
 
-    .murgia-botanica__content {
-      right: 22px;
-      bottom: 28px;
-      left: 22px;
+    .murgia-botaniche-interactive__shade {
+      background: linear-gradient(180deg, rgba(20, 11, 24, 0.04) 32%, rgba(20, 11, 24, 0.72) 100%);
     }
 
-    .murgia-botanica__content h3 {
-      font-size: 36px;
+    .murgia-botaniche-interactive__panel {
+      right: 20px;
+      bottom: 20px;
+      left: 20px;
+      width: auto;
+      padding: 24px 20px;
     }
 
-    .murgia-botaniche__footer {
+    .murgia-botaniche-interactive__panel h3 { font-size: 40px; }
+
+    .murgia-botaniche-interactive__footer {
       width: calc(100% - 40px);
-      margin-top: 44px;
+      margin-top: 42px;
       font-size: 27px;
     }
   }
 </style>
+
+<script>
+  (() => {
+    const section = document.getElementById('MurgiaBotaniche-{{ section.id }}');
+    if (!section) return;
+
+    const tabs = Array.from(section.querySelectorAll('[data-botanica-title]'));
+    const title = section.querySelector('[data-botanica-panel-title]');
+    const text = section.querySelector('[data-botanica-panel-text]');
+
+    if (!tabs.length || !title || !text) return;
+
+    const activateTab = (tab) => {
+      tabs.forEach((item) => {
+        const active = item === tab;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      title.textContent = tab.dataset.botanicaTitle || '';
+      text.textContent = tab.dataset.botanicaText || '';
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('mouseenter', () => activateTab(tab));
+      tab.addEventListener('focus', () => activateTab(tab));
+      tab.addEventListener('click', () => activateTab(tab));
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -308,7 +372,18 @@
       "type": "richtext",
       "id": "intro",
       "label": "Introduzione",
-      "default": "<p>Erbe, fiori e frutti si incontrano in un equilibrio aromatico pensato per sorprendere senza perdere autenticità.</p>"
+      "default": "<p>Erbe, fiori, spezie e frutti si incontrano in un equilibrio aromatico pensato per sorprendere senza perdere autenticità.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine principale"
+    },
+    {
+      "type": "text",
+      "id": "panel_label",
+      "label": "Etichetta scheda",
+      "default": "PROFILO AROMATICO"
     },
     {
       "type": "richtext",
@@ -343,24 +418,19 @@
     {
       "type": "botanica",
       "name": "Botanica",
-      "limit": 4,
+      "limit": 8,
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Immagine"
-        },
         {
           "type": "text",
           "id": "title",
-          "label": "Nome botanica",
+          "label": "Nome",
           "default": "Rosmarino"
         },
         {
           "type": "richtext",
           "id": "text",
           "label": "Descrizione",
-          "default": "<p>Una nota balsamica e mediterranea, intensa e riconoscibile.</p>"
+          "default": "<p>Aromatico e balsamico. Dona freschezza mediterranea e una nota erbacea persistente.</p>"
         }
       ]
     }
@@ -373,28 +443,56 @@
           "type": "botanica",
           "settings": {
             "title": "Rosmarino",
-            "text": "<p>Aromatico e balsamico, racconta il carattere mediterraneo di Murgia.</p>"
+            "text": "<p>Aromatico e balsamico. Dona freschezza mediterranea e una nota erbacea persistente.</p>"
           }
         },
         {
           "type": "botanica",
           "settings": {
             "title": "Alloro",
-            "text": "<p>Verde, intenso e strutturato. Dona profondità al sorso.</p>"
+            "text": "<p>Verde, intenso e strutturato. Aggiunge eleganza e profondità al sorso.</p>"
           }
         },
         {
           "type": "botanica",
           "settings": {
             "title": "Camomilla",
-            "text": "<p>Floreale e delicata, accompagna le note amare con morbidezza.</p>"
+            "text": "<p>Floreale e delicata. Accompagna le note amare con morbidezza.</p>"
           }
         },
         {
           "type": "botanica",
           "settings": {
             "title": "Amarena",
-            "text": "<p>Fruttata e vibrante, firma il colore e la freschezza del prodotto.</p>"
+            "text": "<p>Fruttata e vibrante. Firma il profilo di Murgia con freschezza e carattere.</p>"
+          }
+        },
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Cardamomo",
+            "text": "<p>Speziato e agrumato. Dona complessità, slancio e una freschezza elegante.</p>"
+          }
+        },
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Salvia",
+            "text": "<p>Erbacea e vellutata. Rafforza la componente mediterranea del blend.</p>"
+          }
+        },
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Pesca",
+            "text": "<p>Morbida e succosa. Equilibra le note amare con una dolcezza delicata.</p>"
+          }
+        },
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Rosa",
+            "text": "<p>Elegante e floreale. Chiude il profilo aromatico con una firma raffinata.</p>"
           }
         }
       ]
