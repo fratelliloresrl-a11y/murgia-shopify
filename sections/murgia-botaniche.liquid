@@ -1,0 +1,405 @@
+<section
+  class="murgia-botaniche"
+  style="
+    --botaniche-bg: {{ section.settings.background_color }};
+    --botaniche-text: {{ section.settings.text_color }};
+    --botaniche-accent: {{ section.settings.accent_color }};
+  "
+>
+  <div class="murgia-botaniche__inner">
+    <header class="murgia-botaniche__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="murgia-botaniche__eyebrow">
+          {{ section.settings.eyebrow }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="murgia-botaniche__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.intro != blank %}
+        <div class="murgia-botaniche__intro">
+          {{ section.settings.intro }}
+        </div>
+      {% endif %}
+    </header>
+
+    <div class="murgia-botaniche__grid">
+      {% for block in section.blocks %}
+        <article
+          class="murgia-botanica"
+          {{ block.shopify_attributes }}
+        >
+          <div class="murgia-botanica__media">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag:
+                  class: 'murgia-botanica__image',
+                  widths: '400, 600, 800, 1000, 1200',
+                  sizes: '(max-width: 749px) 100vw, 25vw',
+                  loading: 'lazy'
+              }}
+            {% else %}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'murgia-botanica__placeholder' }}
+            {% endif %}
+
+            <div class="murgia-botanica__overlay"></div>
+
+            <div class="murgia-botanica__number">
+              0{{ forloop.index }}
+            </div>
+
+            <div class="murgia-botanica__content">
+              {% if block.settings.title != blank %}
+                <h3>{{ block.settings.title }}</h3>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="murgia-botanica__text">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.footer_text != blank %}
+      <div class="murgia-botaniche__footer">
+        {{ section.settings.footer_text }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .murgia-botaniche {
+    overflow: hidden;
+    background: var(--botaniche-bg);
+    color: var(--botaniche-text);
+  }
+
+  .murgia-botaniche__inner {
+    padding: clamp(72px, 9vw, 140px) 0;
+  }
+
+  .murgia-botaniche__header {
+    width: min(calc(100% - 48px), 1380px);
+    margin: 0 auto clamp(46px, 6vw, 86px);
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(30px, 6vw, 100px);
+    align-items: end;
+  }
+
+  .murgia-botaniche__eyebrow {
+    margin: 0 0 18px;
+    color: var(--botaniche-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .murgia-botaniche__heading {
+    max-width: 780px;
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(48px, 5.6vw, 88px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .murgia-botaniche__intro {
+    max-width: 560px;
+    font-size: clamp(17px, 1.4vw, 22px);
+    line-height: 1.6;
+  }
+
+  .murgia-botaniche__intro p,
+  .murgia-botaniche__footer p {
+    margin: 0;
+  }
+
+  .murgia-botaniche__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .murgia-botanica {
+    min-width: 0;
+  }
+
+  .murgia-botanica__media {
+    position: relative;
+    min-height: 620px;
+    overflow: hidden;
+    background: #24172f;
+  }
+
+  .murgia-botanica__image,
+  .murgia-botanica__placeholder {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    display: block;
+    object-fit: cover;
+    transition: transform 700ms cubic-bezier(.2, .65, .25, 1);
+  }
+
+  .murgia-botanica:hover .murgia-botanica__image {
+    transform: scale(1.045);
+  }
+
+  .murgia-botanica__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(16, 9, 20, 0.06) 20%,
+        rgba(16, 9, 20, 0.82) 100%
+      );
+  }
+
+  .murgia-botanica__number {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    opacity: 0.75;
+  }
+
+  .murgia-botanica__content {
+    position: absolute;
+    right: 28px;
+    bottom: 34px;
+    left: 28px;
+    z-index: 2;
+    color: #fff;
+  }
+
+  .murgia-botanica__content h3 {
+    margin: 0 0 13px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 2.5vw, 42px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .murgia-botanica__text {
+    max-width: 30ch;
+    font-size: 14px;
+    line-height: 1.55;
+    opacity: 0.88;
+  }
+
+  .murgia-botanica__text p {
+    margin: 0;
+  }
+
+  .murgia-botaniche__footer {
+    width: min(calc(100% - 48px), 920px);
+    margin: clamp(44px, 6vw, 80px) auto 0;
+    color: var(--botaniche-accent);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(24px, 2.8vw, 42px);
+    font-style: italic;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 989px) {
+    .murgia-botaniche__header {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+
+    .murgia-botaniche__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .murgia-botanica__media {
+      min-height: 560px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .murgia-botaniche__inner {
+      padding: 64px 0;
+    }
+
+    .murgia-botaniche__header {
+      width: calc(100% - 40px);
+      margin-bottom: 40px;
+    }
+
+    .murgia-botaniche__heading {
+      font-size: clamp(42px, 13vw, 60px);
+    }
+
+    .murgia-botaniche__intro {
+      font-size: 17px;
+    }
+
+    .murgia-botaniche__grid {
+      grid-template-columns: 1fr;
+      gap: 1px;
+    }
+
+    .murgia-botanica__media {
+      min-height: 118vw;
+      max-height: 650px;
+    }
+
+    .murgia-botanica__content {
+      right: 22px;
+      bottom: 28px;
+      left: 22px;
+    }
+
+    .murgia-botanica__content h3 {
+      font-size: 36px;
+    }
+
+    .murgia-botaniche__footer {
+      width: calc(100% - 40px);
+      margin-top: 44px;
+      font-size: 27px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Murgia Botaniche",
+  "tag": "section",
+  "class": "murgia-botaniche-section",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etichetta",
+      "default": "LE BOTANICHE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "La Puglia dentro ogni sorso."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introduzione",
+      "default": "<p>Erbe, fiori e frutti si incontrano in un equilibrio aromatico pensato per sorprendere senza perdere autenticità.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Frase finale",
+      "default": "<p>Otto botaniche. Un'identità inconfondibile.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colori"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Sfondo",
+      "default": "#3d285d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Testo",
+      "default": "#f2e7d5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Colore accento",
+      "default": "#e4b0b6"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "botanica",
+      "name": "Botanica",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Immagine"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nome botanica",
+          "default": "Rosmarino"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Descrizione",
+          "default": "<p>Una nota balsamica e mediterranea, intensa e riconoscibile.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Murgia Botaniche",
+      "blocks": [
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Rosmarino",
+            "text": "<p>Aromatico e balsamico, racconta il carattere mediterraneo di Murgia.</p>"
+          }
+        },
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Alloro",
+            "text": "<p>Verde, intenso e strutturato. Dona profondità al sorso.</p>"
+          }
+        },
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Camomilla",
+            "text": "<p>Floreale e delicata, accompagna le note amare con morbidezza.</p>"
+          }
+        },
+        {
+          "type": "botanica",
+          "settings": {
+            "title": "Amarena",
+            "text": "<p>Fruttata e vibrante, firma il colore e la freschezza del prodotto.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
