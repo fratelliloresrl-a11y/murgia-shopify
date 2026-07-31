@@ -26,7 +26,10 @@
       {% endif %}
     </header>
 
-    {% if section.blocks.size > 0 %}
+
+
+    <div class="murgia-botaniche-interactive__media">
+         {% if section.blocks.size > 0 %}
       <div class="murgia-botaniche-interactive__tabs" role="tablist" aria-label="Botaniche">
         {% for block in section.blocks %}
           <button
@@ -47,8 +50,6 @@
         {% endfor %}
       </div>
     {% endif %}
-
-    <div class="murgia-botaniche-interactive__media">
       {% if section.settings.image != blank %}
         {{
           section.settings.image
