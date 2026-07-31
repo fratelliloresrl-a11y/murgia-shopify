@@ -1,0 +1,526 @@
+{% liquid
+  assign desktop_image = section.settings.desktop_image
+  assign mobile_image = section.settings.mobile_image
+  assign central_logo = section.settings.central_logo
+%}
+
+<section
+  class="murgia-hero"
+  style="
+    --murgia-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --murgia-content-width: {{ section.settings.content_width }}px;
+    --murgia-min-height: {{ section.settings.desktop_height }}vh;
+  "
+>
+  <div class="murgia-hero__media">
+    {% if desktop_image != blank %}
+      {{
+        desktop_image
+        | image_url: width: 2400
+        | image_tag:
+          class: 'murgia-hero__image murgia-hero__image--desktop',
+          widths: '750, 1100, 1500, 2000, 2400',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high'
+      }}
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'murgia-hero__placeholder' }}
+    {% endif %}
+
+    {% if mobile_image != blank %}
+      {{
+        mobile_image
+        | image_url: width: 1200
+        | image_tag:
+          class: 'murgia-hero__image murgia-hero__image--mobile',
+          widths: '500, 750, 1000, 1200',
+          sizes: '100vw',
+          loading: 'eager'
+      }}
+    {% elsif desktop_image != blank %}
+      {{
+        desktop_image
+        | image_url: width: 1200
+        | image_tag:
+          class: 'murgia-hero__image murgia-hero__image--mobile',
+          widths: '500, 750, 1000, 1200',
+          sizes: '100vw',
+          loading: 'eager'
+      }}
+    {% endif %}
+  </div>
+
+  <div class="murgia-hero__overlay"></div>
+
+  <div class="murgia-hero__content">
+    <div class="murgia-hero__brand">
+      {% if central_logo != blank %}
+        {{
+          central_logo
+          | image_url: width: 1400
+          | image_tag:
+            class: 'murgia-hero__logo',
+            widths: '400, 700, 1000, 1400',
+            sizes: '(max-width: 749px) 86vw, 700px',
+            loading: 'eager'
+        }}
+      {% else %}
+        <h1 class="murgia-hero__title">{{ section.settings.title }}</h1>
+
+        {% if section.settings.subtitle != blank %}
+          <p class="murgia-hero__subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="murgia-hero__story">
+      {% if section.settings.payoff != blank %}
+        <p class="murgia-hero__payoff">
+          <span aria-hidden="true"></span>
+          {{ section.settings.payoff }}
+          <span aria-hidden="true"></span>
+        </p>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="murgia-hero__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
+        <div class="murgia-hero__buttons">
+          {% if section.settings.primary_label != blank %}
+            <a
+              class="murgia-hero__button murgia-hero__button--primary"
+              href="{{ section.settings.primary_link | default: '#' }}"
+            >
+              {{ section.settings.primary_label }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.secondary_label != blank %}
+            <a
+              class="murgia-hero__button murgia-hero__button--secondary"
+              href="{{ section.settings.secondary_link | default: '#' }}"
+            >
+              {{ section.settings.secondary_label }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.show_scroll %}
+    <a class="murgia-hero__scroll" href="#murgia-home-content" aria-label="Scorri alla sezione successiva">
+      <span></span>
+    </a>
+  {% endif %}
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    position: relative;
+  }
+
+  .murgia-hero {
+    position: relative;
+    display: grid;
+    min-height: var(--murgia-min-height);
+    overflow: hidden;
+    color: #fff;
+    background: #1f1917;
+    isolation: isolate;
+  }
+
+  .murgia-hero__media,
+  .murgia-hero__overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .murgia-hero__media {
+    z-index: -2;
+  }
+
+  .murgia-hero__overlay {
+    z-index: -1;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, calc(var(--murgia-overlay) + 0.08)) 0%,
+        rgba(0, 0, 0, calc(var(--murgia-overlay) * 0.35)) 38%,
+        rgba(0, 0, 0, calc(var(--murgia-overlay) + 0.08)) 100%
+      );
+  }
+
+  .murgia-hero__image,
+  .murgia-hero__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .murgia-hero__image--mobile {
+    display: none;
+  }
+
+  .murgia-hero__content {
+    width: min(calc(100% - 48px), var(--murgia-content-width));
+    min-height: var(--murgia-min-height);
+    margin: 0 auto;
+    padding: clamp(150px, 19vh, 240px) 0 clamp(54px, 8vh, 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .murgia-hero__brand {
+    margin: auto 0;
+  }
+
+  .murgia-hero__logo {
+    display: block;
+    width: min(72vw, 720px);
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .murgia-hero__title {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(86px, 12vw, 190px);
+    font-weight: 400;
+    line-height: 0.78;
+    letter-spacing: -0.07em;
+    color: inherit;
+  }
+
+  .murgia-hero__subtitle {
+    margin: 18px 0 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(25px, 3vw, 46px);
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .murgia-hero__story {
+    width: min(100%, 740px);
+  }
+
+  .murgia-hero__payoff {
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(17px, 1.5vw, 24px);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .murgia-hero__payoff span {
+    width: 45px;
+    height: 1px;
+    flex: 0 0 auto;
+    background: currentColor;
+    opacity: 0.65;
+  }
+
+  .murgia-hero__description {
+    margin: 0 auto 34px;
+    font-size: clamp(14px, 1.1vw, 18px);
+    line-height: 1.6;
+  }
+
+  .murgia-hero__description p {
+    margin: 0;
+  }
+
+  .murgia-hero__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1px;
+  }
+
+  .murgia-hero__button {
+    min-width: 220px;
+    padding: 18px 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .murgia-hero__button--primary {
+    background: #d96773;
+    border-color: #d96773;
+  }
+
+  .murgia-hero__button--secondary {
+    background: rgba(20, 15, 14, 0.22);
+    backdrop-filter: blur(8px);
+  }
+
+  .murgia-hero__button:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #251d1a;
+  }
+
+  .murgia-hero__scroll {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    width: 26px;
+    height: 38px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+  }
+
+  .murgia-hero__scroll span {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 3px;
+    height: 7px;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    background: #fff;
+    animation: murgia-scroll 1.8s infinite;
+  }
+
+  @keyframes murgia-scroll {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+
+    35% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 12px);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .murgia-hero {
+      --murgia-min-height: 100svh;
+    }
+
+    .murgia-hero__image--desktop {
+      display: none;
+    }
+
+    .murgia-hero__image--mobile {
+      display: block;
+    }
+
+    .murgia-hero__content {
+      width: min(calc(100% - 32px), var(--murgia-content-width));
+      min-height: 100svh;
+      padding: 130px 0 38px;
+    }
+
+    .murgia-hero__logo {
+      width: min(90vw, 520px);
+    }
+
+    .murgia-hero__title {
+      font-size: clamp(72px, 25vw, 118px);
+    }
+
+    .murgia-hero__subtitle {
+      margin-top: 12px;
+      font-size: clamp(23px, 8vw, 35px);
+    }
+
+    .murgia-hero__payoff {
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .murgia-hero__payoff span {
+      width: 24px;
+    }
+
+    .murgia-hero__description {
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .murgia-hero__buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .murgia-hero__button {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .murgia-hero__scroll {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .murgia-hero__scroll span {
+      animation: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Murgia Hero",
+  "tag": "section",
+  "class": "murgia-hero-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Immagini"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Immagine desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Immagine mobile"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Oscuramento immagine",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 80,
+      "max": 110,
+      "step": 5,
+      "unit": "vh",
+      "label": "Altezza desktop",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 900,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Larghezza contenuto",
+      "default": 1400
+    },
+    {
+      "type": "header",
+      "content": "Marchio"
+    },
+    {
+      "type": "image_picker",
+      "id": "central_logo",
+      "label": "Logo centrale",
+      "info": "Consigliato SVG o PNG trasparente bianco."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titolo alternativo",
+      "default": "Murgia"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sottotitolo alternativo",
+      "default": "Aperitivo di Puglia"
+    },
+    {
+      "type": "header",
+      "content": "Racconto"
+    },
+    {
+      "type": "text",
+      "id": "payoff",
+      "label": "Payoff",
+      "default": "L’anima della Puglia, il nuovo colore dell’aperitivo."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descrizione",
+      "default": "<p>Botaniche pugliesi e mixology innovativa in una bottiglia.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Pulsanti"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Etichetta pulsante principale",
+      "default": "Acquista ora"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Link pulsante principale"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Etichetta secondo pulsante",
+      "default": "Scopri la storia"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Link secondo pulsante"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll",
+      "label": "Mostra indicatore di scorrimento",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Murgia Hero"
+    }
+  ]
+}
+{% endschema %}
