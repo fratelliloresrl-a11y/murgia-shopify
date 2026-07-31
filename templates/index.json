@@ -30,6 +30,53 @@
         "show_scroll": false
       }
     },
+    "murgia_editorial_8FXtwY": {
+      "type": "murgia-editorial",
+      "blocks": {
+        "feature_VxMt96": {
+          "type": "feature",
+          "settings": {
+            "icon": "botanicals",
+            "title": "Botaniche mediterranee",
+            "text": "<p>Otto ingredienti selezionati per creare un profilo aromatico unico e riconoscibile.</p>"
+          }
+        },
+        "feature_XCQgFY": {
+          "type": "feature",
+          "settings": {
+            "icon": "glass",
+            "title": "Spritz & Cocktail",
+            "text": "<p>Versatile per natura. Perfetto nello Spritz, sorprendente in ogni twist.</p>"
+          }
+        },
+        "feature_fJD734": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "title": "20% Vol.",
+            "text": "<p>Struttura, freschezza e bevibilità in perfetto equilibrio.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_VxMt96",
+        "feature_XCQgFY",
+        "feature_fJD734"
+      ],
+      "name": "Murgia Editorial",
+      "settings": {
+        "image": "shopify://shop_images/murgia-cocktail-bottle.png",
+        "eyebrow": "IL PRODOTTO",
+        "heading": "Più di un aperitivo.",
+        "description": "<p>Un blend di <strong>8 botaniche selezionate</strong> che danno vita a un prodotto unico: fresco, aromatico, leggermente fruttato, con un finale amaricante elegante.</p><p>Il suo colore <strong>VIOLA</strong> intenso viene dalla natura, non da artifici.</p><p>Perfetto con bollicine, sorprendente nei cocktail, iconico nello spritz.</p>",
+        "highlight": "Murgia non segue le regole. Le riscrive!",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "#ede0cd",
+        "text_color": "#3d285d",
+        "accent_color": "#412263"
+      }
+    },
     "hero_RkimKJ": {
       "type": "hero",
       "blocks": {
@@ -621,6 +668,7 @@
   },
   "order": [
     "murgia_hero_HyrJai",
+    "murgia_editorial_8FXtwY",
     "hero_RkimKJ",
     "product_list_X8Q7bi",
     "section_RhpYRt"
