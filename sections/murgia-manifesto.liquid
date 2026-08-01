@@ -1,0 +1,314 @@
+<section
+  id="MurgiaManifesto-{{ section.id }}"
+  class="murgia-manifesto"
+  style="
+    --manifesto-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --manifesto-text: {{ section.settings.text_color }};
+    --manifesto-accent: {{ section.settings.accent_color }};
+    --manifesto-height: {{ section.settings.desktop_height }}vh;
+  "
+>
+  <div class="murgia-manifesto__media">
+    {% if section.settings.image != blank %}
+      {{
+        section.settings.image
+        | image_url: width: 2400
+        | image_tag:
+          class: 'murgia-manifesto__image murgia-manifesto__image--desktop',
+          widths: '750, 1100, 1500, 2000, 2400',
+          sizes: '100vw',
+          loading: 'lazy'
+      }}
+    {% else %}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'murgia-manifesto__placeholder' }}
+    {% endif %}
+
+    {% if section.settings.mobile_image != blank %}
+      {{
+        section.settings.mobile_image
+        | image_url: width: 1200
+        | image_tag:
+          class: 'murgia-manifesto__image murgia-manifesto__image--mobile',
+          widths: '500, 750, 1000, 1200',
+          sizes: '100vw',
+          loading: 'lazy'
+      }}
+    {% endif %}
+  </div>
+
+  <div class="murgia-manifesto__overlay"></div>
+
+  <div class="murgia-manifesto__content">
+    {% if section.settings.eyebrow != blank %}
+      <p class="murgia-manifesto__eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h2 class="murgia-manifesto__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <div class="murgia-manifesto__text rte">{{ section.settings.text }}</div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a
+        class="murgia-manifesto__button"
+        href="{{ section.settings.button_link | default: '/pages/la-storia' }}"
+      >
+        <span>{{ section.settings.button_label }}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} { position: relative; }
+
+  .murgia-manifesto {
+    position: relative;
+    min-height: var(--manifesto-height);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    color: var(--manifesto-text);
+    background: #1a1021;
+    isolation: isolate;
+  }
+
+  .murgia-manifesto__media,
+  .murgia-manifesto__overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .murgia-manifesto__media { z-index: -2; }
+
+  .murgia-manifesto__overlay {
+    z-index: -1;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(18, 10, 22, calc(var(--manifesto-overlay) + 0.18)) 0%,
+        rgba(18, 10, 22, calc(var(--manifesto-overlay) * 0.72)) 46%,
+        rgba(18, 10, 22, calc(var(--manifesto-overlay) * 0.35)) 100%
+      );
+  }
+
+  .murgia-manifesto__image,
+  .murgia-manifesto__placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .murgia-manifesto__image--mobile { display: none; }
+
+  .murgia-manifesto__content {
+    width: min(calc(100% - 48px), 1380px);
+    margin: 0 auto;
+    padding: clamp(90px, 10vw, 150px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .murgia-manifesto__eyebrow {
+    margin: 0 0 22px;
+    color: var(--manifesto-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .murgia-manifesto__heading {
+    max-width: 11ch;
+    margin: 0;
+    color: inherit;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(58px, 7vw, 112px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+  }
+
+  .murgia-manifesto__text {
+    max-width: 560px;
+    margin-top: 34px;
+    font-size: clamp(17px, 1.35vw, 21px);
+    line-height: 1.65;
+  }
+
+  .murgia-manifesto__text p { margin: 0; }
+
+  .murgia-manifesto__button {
+    margin-top: 38px;
+    padding-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid currentColor;
+    color: inherit;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .murgia-manifesto__button span:last-child {
+    transition: transform 180ms ease;
+  }
+
+  .murgia-manifesto__button:hover span:last-child {
+    transform: translateX(5px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .murgia-manifesto { min-height: 82svh; }
+
+    .murgia-manifesto__image--mobile { display: block; }
+
+    .murgia-manifesto__image--mobile + .murgia-manifesto__image--desktop {
+      display: none;
+    }
+
+    .murgia-manifesto__overlay {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(18, 10, 22, 0.18) 0%,
+          rgba(18, 10, 22, 0.72) 64%,
+          rgba(18, 10, 22, 0.88) 100%
+        );
+    }
+
+    .murgia-manifesto__content {
+      width: calc(100% - 40px);
+      min-height: 82svh;
+      padding: 70px 0 46px;
+      justify-content: flex-end;
+    }
+
+    .murgia-manifesto__heading {
+      max-width: 9ch;
+      font-size: clamp(48px, 15vw, 68px);
+    }
+
+    .murgia-manifesto__text {
+      margin-top: 24px;
+      font-size: 17px;
+    }
+
+    .murgia-manifesto__button { margin-top: 30px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .murgia-manifesto__button span:last-child { transition: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Murgia Manifesto",
+  "tag": "section",
+  "class": "murgia-manifesto-section",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Immagini"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Immagine mobile"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 10,
+      "max": 75,
+      "step": 5,
+      "unit": "%",
+      "label": "Oscuramento immagine",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 70,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Altezza desktop",
+      "default": 85
+    },
+    {
+      "type": "header",
+      "content": "Testi"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etichetta",
+      "default": "LA NOSTRA STORIA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "Dalla Puglia, con carattere."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Testo",
+      "default": "<p>Murgia nasce dall'incontro tra botaniche mediterranee, cultura dell'aperitivo e una visione contemporanea del gusto.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Etichetta CTA",
+      "default": "Scopri la nostra storia"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link CTA"
+    },
+    {
+      "type": "header",
+      "content": "Colori"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Testo",
+      "default": "#f7f3ee"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accento",
+      "default": "#e4b0b6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Murgia Manifesto"
+    }
+  ]
+}
+{% endschema %}
