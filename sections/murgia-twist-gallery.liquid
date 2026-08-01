@@ -1,0 +1,448 @@
+<section
+  id="MurgiaTwistGallery-{{ section.id }}"
+  class="murgia-twist-gallery"
+  style="
+    --twist-bg: {{ section.settings.background_color }};
+    --twist-text: {{ section.settings.text_color }};
+    --twist-accent: {{ section.settings.accent_color }};
+  "
+>
+  <div class="murgia-twist-gallery__inner">
+    <header class="murgia-twist-gallery__header">
+      <div>
+        {% if section.settings.eyebrow != blank %}
+          <p class="murgia-twist-gallery__eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="murgia-twist-gallery__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.intro != blank %}
+          <div class="murgia-twist-gallery__intro rte">{{ section.settings.intro }}</div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.cta_label != blank %}
+        <a
+          class="murgia-twist-gallery__cta"
+          href="{{ section.settings.cta_link | default: '/pages/drink-list' }}"
+        >
+          <span>{{ section.settings.cta_label }}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      {% endif %}
+    </header>
+
+    <div class="murgia-twist-gallery__grid">
+      {% for block in section.blocks %}
+        <a
+          class="murgia-twist-card"
+          href="{{ block.settings.link | default: '/pages/drink-list' }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="murgia-twist-card__media">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1400
+                | image_tag:
+                  class: 'murgia-twist-card__image',
+                  widths: '500, 750, 1000, 1200, 1400',
+                  sizes: '(max-width: 749px) 100vw, 33vw',
+                  loading: 'lazy'
+              }}
+            {% else %}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'murgia-twist-card__placeholder' }}
+            {% endif %}
+
+            <div class="murgia-twist-card__overlay"></div>
+
+            <div class="murgia-twist-card__content">
+              {% if block.settings.kicker != blank %}
+                <p class="murgia-twist-card__kicker">{{ block.settings.kicker }}</p>
+              {% endif %}
+
+              <div class="murgia-twist-card__title-row">
+                <h3>{{ block.settings.title }}</h3>
+                <span class="murgia-twist-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    background: var(--twist-bg);
+  }
+
+  .murgia-twist-gallery {
+    overflow: hidden;
+    background: var(--twist-bg);
+    color: var(--twist-text);
+  }
+
+  .murgia-twist-gallery__inner {
+    width: min(calc(100% - 48px), 1440px);
+    margin: 0 auto;
+    padding: clamp(76px, 8vw, 128px) 0;
+  }
+
+  .murgia-twist-gallery__header {
+    margin-bottom: clamp(38px, 5vw, 66px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 36px;
+    align-items: end;
+  }
+
+  .murgia-twist-gallery__eyebrow {
+    margin: 0 0 16px;
+    color: var(--twist-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .murgia-twist-gallery__heading {
+    max-width: 850px;
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(50px, 5.2vw, 84px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .murgia-twist-gallery__intro {
+    max-width: 560px;
+    margin-top: 24px;
+    font-size: clamp(17px, 1.25vw, 20px);
+    line-height: 1.6;
+  }
+
+  .murgia-twist-gallery__intro p {
+    margin: 0;
+  }
+
+  .murgia-twist-gallery__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid currentColor;
+    color: var(--twist-text);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .murgia-twist-gallery__cta span:last-child {
+    transition: transform 180ms ease;
+  }
+
+  .murgia-twist-gallery__cta:hover span:last-child {
+    transform: translateX(5px);
+  }
+
+  .murgia-twist-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 30px);
+  }
+
+  .murgia-twist-card {
+    min-width: 0;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .murgia-twist-card__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #1c1224;
+  }
+
+  .murgia-twist-card__image,
+  .murgia-twist-card__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 650ms cubic-bezier(.2, .65, .25, 1);
+  }
+
+  .murgia-twist-card__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(19, 10, 24, 0.04) 35%, rgba(19, 10, 24, 0.82) 100%);
+    transition: background-color 220ms ease;
+  }
+
+  .murgia-twist-card__content {
+    position: absolute;
+    right: 28px;
+    bottom: 30px;
+    left: 28px;
+    z-index: 2;
+    transition: transform 220ms ease;
+  }
+
+  .murgia-twist-card__kicker {
+    margin: 0 0 10px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.76;
+  }
+
+  .murgia-twist-card__title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .murgia-twist-card h3 {
+    max-width: 12ch;
+    margin: 0;
+    color: inherit;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(31px, 3vw, 50px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.98;
+  }
+
+  .murgia-twist-card__arrow {
+    flex: 0 0 auto;
+    transform: translateX(-8px);
+    font-size: 28px;
+    opacity: 0;
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease;
+  }
+
+  .murgia-twist-card:hover .murgia-twist-card__image {
+    transform: scale(1.045);
+  }
+
+  .murgia-twist-card:hover .murgia-twist-card__overlay {
+    background-color: rgba(55, 28, 76, 0.18);
+  }
+
+  .murgia-twist-card:hover .murgia-twist-card__content {
+    transform: translateY(-7px);
+  }
+
+  .murgia-twist-card:hover .murgia-twist-card__arrow {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 989px) {
+    .murgia-twist-gallery__header {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .murgia-twist-gallery__cta {
+      width: fit-content;
+    }
+
+    .murgia-twist-gallery__grid {
+      gap: 16px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .murgia-twist-gallery__inner {
+      width: calc(100% - 40px);
+      padding: 64px 0;
+    }
+
+    .murgia-twist-gallery__header {
+      margin-bottom: 34px;
+      gap: 24px;
+    }
+
+    .murgia-twist-gallery__heading {
+      font-size: clamp(42px, 13vw, 58px);
+    }
+
+    .murgia-twist-gallery__intro {
+      margin-top: 18px;
+      font-size: 17px;
+    }
+
+    .murgia-twist-gallery__grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .murgia-twist-card__media {
+      aspect-ratio: 4 / 5;
+    }
+
+    .murgia-twist-card__content {
+      right: 22px;
+      bottom: 24px;
+      left: 22px;
+    }
+
+    .murgia-twist-card h3 {
+      font-size: 40px;
+    }
+
+    .murgia-twist-card__arrow {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .murgia-twist-card__image,
+    .murgia-twist-card__content,
+    .murgia-twist-card__arrow,
+    .murgia-twist-gallery__cta span:last-child {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Murgia Twist",
+  "tag": "section",
+  "class": "murgia-twist-gallery-section",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etichetta",
+      "default": "DRINK SIGNATURE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "Il rito dell'aperitivo"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Testo introduttivo",
+      "default": "<p>Tre interpretazioni, un solo carattere.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Etichetta CTA",
+      "default": "Esplora tutti i twist"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link CTA"
+    },
+    {
+      "type": "header",
+      "content": "Colori"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Sfondo",
+      "default": "#ede0cd"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Testo",
+      "default": "#3d285d"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Colore accento",
+      "default": "#a15368"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "twist",
+      "name": "Twist",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Immagine"
+        },
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "Etichetta piccola",
+          "default": "TWIST MURGIA"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nome cocktail",
+          "default": "Murgia Spritz"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Murgia Twist",
+      "blocks": [
+        {
+          "type": "twist",
+          "settings": {
+            "kicker": "TWIST MURGIA",
+            "title": "Murgia Spritz"
+          }
+        },
+        {
+          "type": "twist",
+          "settings": {
+            "kicker": "TWIST MURGIA",
+            "title": "Apulian Negroni"
+          }
+        },
+        {
+          "type": "twist",
+          "settings": {
+            "kicker": "TWIST MURGIA",
+            "title": "Cosmopuglitano"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
