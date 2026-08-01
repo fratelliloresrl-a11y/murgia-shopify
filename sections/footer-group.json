@@ -11,6 +11,37 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
+    "murgia_contact_footer_TkqAPM": {
+      "type": "murgia-contact-footer",
+      "name": "Murgia Contact Footer",
+      "settings": {
+        "logo": "shopify://shop_images/logo-murgia.png",
+        "brand_text": "<p>Aperitivo di Puglia. Botaniche mediterranee, tradizione e mixology innovativa.</p>",
+        "responsibility_text": "Bevi responsabilmente • 20% Vol.",
+        "navigation_heading": "Navigazione",
+        "menu": "main-menu",
+        "contacts_heading": "Contatti",
+        "email": "info@aperitivomurgia.com",
+        "instagram_url": "https://www.instagram.com/murgia_aperitivodipuglia/",
+        "facebook_url": "",
+        "private_heading": "Scrivici",
+        "private_text": "",
+        "private_button": "Invia",
+        "business_eyebrow": "BUSINESS",
+        "business_heading": "Collabora con Murgia",
+        "business_text": "<p>Bar, ristoranti, hotel, enoteche, cocktail bar e distributori. Porta l'autentico aperitivo pugliese nel tuo locale.</p>",
+        "business_button": "Richiedi informazioni",
+        "signature": "Made by Apulians.",
+        "copyright_text": "Aperitivo Murgia · Fratelli Lorè SRL",
+        "privacy_url": "",
+        "cookie_url": "",
+        "terms_url": "",
+        "background_color": "#3d285d",
+        "text_color": "#f7f3ee",
+        "accent_color": "#e4b0b6",
+        "muted_color": "#c9bdd1"
+      }
+    },
     "footer_WnX4aJ": {
       "type": "footer",
       "blocks": {
@@ -131,9 +162,9 @@
             "width": "fill",
             "custom_width": 70,
             "inherit_color_scheme": true,
+            "color_scheme": "",
             "heading": "We send tasty emails",
             "heading_preset": "h4",
-            "color_scheme": "",
             "border_style": "underline",
             "border_width": 1,
             "border_radius": 100,
@@ -155,6 +186,7 @@
         "group_EJMKU9",
         "email_signup_t3aAfi"
       ],
+      "disabled": true,
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
@@ -211,6 +243,7 @@
         "footer_policy_list_i3GaPF",
         "social_links_Nyht3m"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "page-width",
         "gap": 24,
@@ -222,6 +255,7 @@
     }
   },
   "order": [
+    "murgia_contact_footer_TkqAPM",
     "footer_WnX4aJ",
     "utilities"
   ]

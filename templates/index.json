@@ -208,6 +208,23 @@
         "accent_color": "#a15368"
       }
     },
+    "murgia_manifesto_xjzHrk": {
+      "type": "murgia-manifesto",
+      "name": "Murgia Manifesto",
+      "settings": {
+        "image": "shopify://shop_images/murgia-landscape.jpg",
+        "mobile_image": "shopify://shop_images/murgia-landscape.jpg",
+        "overlay_opacity": 35,
+        "desktop_height": 85,
+        "eyebrow": "LA NOSTRA STORIA",
+        "heading": "Dalla Puglia, con carattere.",
+        "text": "<p>Murgia nasce dall'incontro tra botaniche mediterranee, cultura dell'aperitivo e una visione contemporanea del gusto.</p>",
+        "button_label": "Scopri la nostra storia",
+        "button_link": "",
+        "text_color": "#f7f3ee",
+        "accent_color": "#e4b0b6"
+      }
+    },
     "hero_RkimKJ": {
       "type": "hero",
       "blocks": {
@@ -617,6 +634,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Featured collection",
       "settings": {
         "collection": "all",
@@ -767,6 +785,7 @@
         "video_NqWNaD",
         "group_TEanyT"
       ],
+      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
         "content_direction": "row",
@@ -802,6 +821,7 @@
     "murgia_editorial_8FXtwY",
     "murgia_botaniche_nMnHYR",
     "murgia_twist_gallery_yrYrMJ",
+    "murgia_manifesto_xjzHrk",
     "hero_RkimKJ",
     "product_list_X8Q7bi",
     "section_RhpYRt"
