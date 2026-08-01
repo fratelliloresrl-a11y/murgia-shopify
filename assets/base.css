@@ -5070,3 +5070,91 @@ body.template-index .shopify-section-header-sticky .header__heading-logo {
     height: 19px;
   }
 }
+/* ==================================================
+   MURGIA — CENTRATURA MENU E FONT HEADER
+   ================================================== */
+
+/* Header su tre aree: logo / menu / icone */
+.header {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  align-items: center !important;
+}
+
+/* Logo allineato a sinistra */
+.header__heading,
+.header__heading-link {
+  justify-self: start !important;
+}
+
+/* Menu perfettamente centrato */
+.header__inline-menu {
+  justify-self: center !important;
+  margin: 0 !important;
+}
+
+/* Icone allineate a destra */
+.header__icons {
+  justify-self: end !important;
+}
+
+/* Spaziatura tra le voci */
+.header__inline-menu .list-menu--inline {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 34px !important;
+}
+
+/* Font menu più elegante */
+.header__menu-item,
+.header__inline-menu a,
+.header__inline-menu span {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: none !important;
+  line-height: 1 !important;
+}
+
+/* Colore bianco sulla home */
+body.template-index .header__menu-item,
+body.template-index .header__inline-menu a,
+body.template-index .header__inline-menu span {
+  color: #f7f3ee !important;
+}
+
+/* Hover discreto */
+.header__menu-item,
+.header__inline-menu a {
+  opacity: 0.88;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.header__menu-item:hover,
+.header__inline-menu a:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Evita padding irregolari nei link */
+.header__menu-item {
+  padding-inline: 0 !important;
+}
+
+/* Tablet */
+@media screen and (max-width: 1100px) {
+  .header__inline-menu .list-menu--inline {
+    gap: 22px !important;
+  }
+
+  .header__menu-item,
+  .header__inline-menu a,
+  .header__inline-menu span {
+    font-size: 14px !important;
+  }
+}
