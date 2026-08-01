@@ -5006,8 +5006,10 @@ product-recommendations:has([data-has-recommendations='false']) {
    SOLO HOMEPAGE: logo e contenuti bianchi
    -------------------------------------------------- */
 
-body.template-index .header__heading-logo {
-  filter: brightness(0) invert(1);
+body.template-index .header__heading-logo,
+body.template-index .header__heading-logo-wrapper img,
+body.template-index .header img {
+  filter: brightness(0) invert(1) !important;
 }
 
 body.template-index .header__menu-item,
