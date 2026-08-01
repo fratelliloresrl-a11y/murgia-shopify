@@ -77,6 +77,137 @@
         "accent_color": "#412263"
       }
     },
+    "murgia_botaniche_nMnHYR": {
+      "type": "murgia-botaniche",
+      "blocks": {
+        "botanica_cAKi4K": {
+          "type": "botanica",
+          "settings": {
+            "title": "Rosmarino",
+            "text": "<p>Aromatico e balsamico. Dona freschezza mediterranea e una nota erbacea persistente.</p>"
+          }
+        },
+        "botanica_Qm4gEP": {
+          "type": "botanica",
+          "settings": {
+            "title": "Salvia",
+            "text": "<p>Aromatico e balsamico. Dona freschezza mediterranea e una nota erbacea persistente.</p>"
+          }
+        },
+        "botanica_YTgFg9": {
+          "type": "botanica",
+          "settings": {
+            "title": "Alloro",
+            "text": "<p>Aromatico e balsamico. Dona freschezza mediterranea e una nota erbacea persistente.</p>"
+          }
+        },
+        "botanica_hA6YGC": {
+          "type": "botanica",
+          "settings": {
+            "title": "Cardamomo",
+            "text": "<p>Aromatico e balsamico. Dona freschezza mediterranea e una nota erbacea persistente.</p>"
+          }
+        },
+        "botanica_YQPEyG": {
+          "type": "botanica",
+          "settings": {
+            "title": "Camomilla",
+            "text": "<p>Aromatico e balsamico, racconta il carattere mediterraneo di Murgia.</p>"
+          }
+        },
+        "botanica_DX4m73": {
+          "type": "botanica",
+          "settings": {
+            "title": "Rosa",
+            "text": "<p>Verde, intenso e strutturato. Dona profondità al sorso.</p>"
+          }
+        },
+        "botanica_93VgRj": {
+          "type": "botanica",
+          "settings": {
+            "title": "Pesca",
+            "text": "<p>Floreale e delicata, accompagna le note amare con morbidezza.</p>"
+          }
+        },
+        "botanica_3FXEbB": {
+          "type": "botanica",
+          "settings": {
+            "title": "Amarena",
+            "text": "<p>Fruttata e vibrante, firma il colore e la freschezza del prodotto.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "botanica_cAKi4K",
+        "botanica_Qm4gEP",
+        "botanica_YTgFg9",
+        "botanica_hA6YGC",
+        "botanica_YQPEyG",
+        "botanica_DX4m73",
+        "botanica_93VgRj",
+        "botanica_3FXEbB"
+      ],
+      "name": "Murgia Botaniche",
+      "settings": {
+        "eyebrow": "LE BOTANICHE",
+        "heading": "La Puglia dentro ogni sorso.",
+        "intro": "<p>Erbe, fiori e frutti si incontrano in un equilibrio aromatico pensato per sorprendere senza perdere autenticità.</p>",
+        "image": "shopify://shop_images/botanicals.jpg",
+        "panel_label": "PROFILO AROMATICO",
+        "footer_text": "<p>Otto botaniche. Un'identità inconfondibile.</p>",
+        "background_color": "#3d285d",
+        "text_color": "#f2e7d5",
+        "accent_color": "#e4b0b6"
+      }
+    },
+    "murgia_twist_gallery_yrYrMJ": {
+      "type": "murgia-twist-gallery",
+      "blocks": {
+        "twist_QLHNAC": {
+          "type": "twist",
+          "settings": {
+            "image": "shopify://shop_images/MURGASPRTZZZZ.png",
+            "kicker": "",
+            "title": "Murgia Spritz",
+            "link": ""
+          }
+        },
+        "twist_qxR4WW": {
+          "type": "twist",
+          "settings": {
+            "image": "shopify://shop_images/NEGRON.png",
+            "kicker": "",
+            "title": "Apulian Negroni",
+            "link": ""
+          }
+        },
+        "twist_kcfw7F": {
+          "type": "twist",
+          "settings": {
+            "image": "shopify://shop_images/COSMOPUGLTANO.png",
+            "kicker": "",
+            "title": "Cosmopuglitano",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "twist_QLHNAC",
+        "twist_qxR4WW",
+        "twist_kcfw7F"
+      ],
+      "name": "Murgia Twist",
+      "settings": {
+        "eyebrow": "DRINK SIGNATURE",
+        "heading": "Il rito dell'aperitivo",
+        "intro": "<p>Tre interpretazioni, un solo carattere.</p>",
+        "cta_label": "Esplora tutti i twist",
+        "cta_link": "",
+        "background_color": "#ede0cd",
+        "text_color": "#3d285d",
+        "accent_color": "#a15368"
+      }
+    },
     "hero_RkimKJ": {
       "type": "hero",
       "blocks": {
@@ -664,61 +795,13 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
-    },
-    "murgia_botaniche_nMnHYR": {
-      "type": "murgia-botaniche",
-      "blocks": {
-        "botanica_YQPEyG": {
-          "type": "botanica",
-          "settings": {
-            "title": "Rosmarino",
-            "text": "<p>Aromatico e balsamico, racconta il carattere mediterraneo di Murgia.</p>"
-          }
-        },
-        "botanica_DX4m73": {
-          "type": "botanica",
-          "settings": {
-            "title": "Alloro",
-            "text": "<p>Verde, intenso e strutturato. Dona profondità al sorso.</p>"
-          }
-        },
-        "botanica_93VgRj": {
-          "type": "botanica",
-          "settings": {
-            "title": "Camomilla",
-            "text": "<p>Floreale e delicata, accompagna le note amare con morbidezza.</p>"
-          }
-        },
-        "botanica_3FXEbB": {
-          "type": "botanica",
-          "settings": {
-            "title": "Amarena",
-            "text": "<p>Fruttata e vibrante, firma il colore e la freschezza del prodotto.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "botanica_YQPEyG",
-        "botanica_DX4m73",
-        "botanica_93VgRj",
-        "botanica_3FXEbB"
-      ],
-      "name": "Murgia Botaniche",
-      "settings": {
-        "eyebrow": "LE BOTANICHE",
-        "heading": "La Puglia dentro ogni sorso.",
-        "intro": "<p>Erbe, fiori e frutti si incontrano in un equilibrio aromatico pensato per sorprendere senza perdere autenticità.</p>",
-        "footer_text": "<p>Otto botaniche. Un'identità inconfondibile.</p>",
-        "background_color": "#3d285d",
-        "text_color": "#f2e7d5",
-        "accent_color": "#e4b0b6"
-      }
     }
   },
   "order": [
     "murgia_hero_HyrJai",
     "murgia_editorial_8FXtwY",
     "murgia_botaniche_nMnHYR",
+    "murgia_twist_gallery_yrYrMJ",
     "hero_RkimKJ",
     "product_list_X8Q7bi",
     "section_RhpYRt"
