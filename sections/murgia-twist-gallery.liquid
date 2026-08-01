@@ -187,7 +187,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(19, 10, 24, 0.04) 35%, rgba(19, 10, 24, 0.82) 100%);
+      linear-gradient(180deg, rgba(19, 10, 24, 0.02) 42%, rgba(19, 10, 24, 0.72) 100%);
     transition: background-color 220ms ease;
   }
 
@@ -217,15 +217,26 @@
   }
 
   .murgia-twist-card h3 {
-    max-width: 12ch;
-    margin: 0;
-    color: inherit;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(31px, 3vw, 50px);
-    font-style: italic;
-    font-weight: 400;
-    line-height: 0.98;
-  }
+  max-width: 100%;
+  margin: 0;
+  color: inherit;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(28px, 2.45vw, 42px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.murgia-twist-card__title-row {
+  min-width: 0;
+}
+
+.murgia-twist-card h3 {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
 
   .murgia-twist-card__arrow {
     flex: 0 0 auto;
@@ -295,14 +306,14 @@
     }
 
     .murgia-twist-card__media {
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 3 / 4;
     }
 
     .murgia-twist-card__content {
-      right: 22px;
-      bottom: 24px;
-      left: 22px;
-    }
+  position: absolute;
+  right: 24px;
+  bottom: 26px;
+  left: 24px;
 
     .murgia-twist-card h3 {
       font-size: 40px;
