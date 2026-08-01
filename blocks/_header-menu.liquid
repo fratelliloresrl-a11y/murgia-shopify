@@ -692,6 +692,49 @@
     /* preserves the inherited grid layout when this submenu wrapper is used */
     display: contents;
   }
+  /* Murgia — menu header */
+
+.header-menu,
+.header-menu__inner,
+.header-menu nav {
+  width: 100%;
+}
+
+.header-menu ul,
+.header-menu__list,
+.header-menu .list-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 2.5vw, 42px);
+  margin: 0;
+  padding: 0;
+}
+
+.header-menu a,
+.header-menu__link,
+.header-menu .list-menu__item {
+  color: #f7f3ee;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  text-transform: none;
+  text-decoration: none;
+  opacity: 0.88;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.header-menu a:hover,
+.header-menu__link:hover,
+.header-menu .list-menu__item:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
 {% endstylesheet %}
 
 {% schema %}
