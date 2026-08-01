@@ -4944,3 +4944,127 @@ product-recommendations:has([data-has-recommendations='false']) {
     translate: 0px var(--atc-destination, 0px);
   }
 }
+/* ==================================================
+   MURGIA — HEADER PREMIUM
+   ================================================== */
+
+/* Header più compatto e allineato */
+.header {
+  min-height: 72px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Logo */
+.header__heading-logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.header__heading-logo {
+  width: 150px !important;
+  max-width: 150px !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+/* Spaziatura menu desktop */
+.header__inline-menu .list-menu--inline {
+  column-gap: 32px;
+}
+
+/* Stile voci menu */
+.header__menu-item,
+.header__inline-menu a {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  opacity: 0.82;
+  transition: opacity 180ms ease;
+}
+
+.header__menu-item:hover,
+.header__inline-menu a:hover {
+  opacity: 1;
+}
+
+/* Icone più proporzionate */
+.header__icon,
+.header__icon .svg-wrapper,
+.header__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Spazio tra le icone */
+.header__icons {
+  gap: 8px;
+}
+
+/* --------------------------------------------------
+   SOLO HOMEPAGE: logo e contenuti bianchi
+   -------------------------------------------------- */
+
+body.template-index .header__heading-logo {
+  filter: brightness(0) invert(1);
+}
+
+body.template-index .header__menu-item,
+body.template-index .header__inline-menu a,
+body.template-index .header__icon,
+body.template-index .header__icon svg,
+body.template-index .localization-form__select {
+  color: #f7f3ee !important;
+}
+
+/* Header trasparente sopra la Hero */
+body.template-index .header-wrapper {
+  background: transparent !important;
+  border-bottom: 0 !important;
+}
+
+/* Header sovrapposto alla prima sezione */
+body.template-index .shopify-section-group-header-group {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
+}
+
+/* Quando l'header diventa sticky */
+body.template-index .shopify-section-header-sticky .header-wrapper {
+  background: rgba(28, 17, 35, 0.84) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Mantiene leggibili logo e menu nello sticky */
+body.template-index .shopify-section-header-sticky .header__heading-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* --------------------------------------------------
+   MOBILE
+   -------------------------------------------------- */
+
+@media screen and (max-width: 749px) {
+  .header {
+    min-height: 64px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .header__heading-logo {
+    width: 125px !important;
+    max-width: 125px !important;
+  }
+
+  .header__icon,
+  .header__icon .svg-wrapper,
+  .header__icon svg {
+    width: 19px;
+    height: 19px;
+  }
+}
