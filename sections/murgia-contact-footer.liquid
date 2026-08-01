@@ -1,0 +1,708 @@
+<section
+  id="MurgiaContactFooter-{{ section.id }}"
+  class="murgia-contact-footer"
+  style="
+    --footer-bg: {{ section.settings.background_color }};
+    --footer-text: {{ section.settings.text_color }};
+    --footer-accent: {{ section.settings.accent_color }};
+    --footer-muted: {{ section.settings.muted_color }};
+  "
+>
+  <div class="murgia-contact-footer__top">
+    <div class="murgia-contact-footer__brand">
+      {% if section.settings.logo != blank %}
+        {{
+          section.settings.logo
+          | image_url: width: 520
+          | image_tag:
+            class: 'murgia-contact-footer__logo',
+            widths: '240, 360, 520',
+            sizes: '240px',
+            loading: 'lazy'
+        }}
+      {% else %}
+        <p class="murgia-contact-footer__wordmark">Murgia</p>
+      {% endif %}
+
+      {% if section.settings.brand_text != blank %}
+        <div class="murgia-contact-footer__brand-text rte">
+          {{ section.settings.brand_text }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.responsibility_text != blank %}
+        <p class="murgia-contact-footer__responsibility">
+          {{ section.settings.responsibility_text }}
+        </p>
+      {% endif %}
+    </div>
+
+    <nav class="murgia-contact-footer__navigation" aria-label="Navigazione footer">
+      <p class="murgia-contact-footer__label">{{ section.settings.navigation_heading }}</p>
+
+      {% if section.settings.menu != blank %}
+        <ul>
+          {% for link in section.settings.menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </nav>
+
+    <div class="murgia-contact-footer__contacts">
+      <p class="murgia-contact-footer__label">{{ section.settings.contacts_heading }}</p>
+
+      {% if section.settings.email != blank %}
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+      {% endif %}
+
+      {% if section.settings.instagram_url != blank %}
+        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>
+      {% endif %}
+
+      {% if section.settings.facebook_url != blank %}
+        <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">Facebook</a>
+      {% endif %}
+    </div>
+
+    <div class="murgia-contact-footer__private">
+      <p class="murgia-contact-footer__label">{{ section.settings.private_heading }}</p>
+
+      {% if section.settings.private_text != blank %}
+        <div class="murgia-contact-footer__private-text rte">
+          {{ section.settings.private_text }}
+        </div>
+      {% endif %}
+
+      {% form 'contact', id: 'MurgiaPrivateContactForm' %}
+        <input type="hidden" name="contact[Tipo richiesta]" value="Privato">
+
+        {% if form.posted_successfully? %}
+          <p class="murgia-contact-footer__success" tabindex="-1">
+            Grazie. Il tuo messaggio è stato inviato.
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+
+        <div class="murgia-contact-footer__fields">
+          <label>
+            <span>Nome</span>
+            <input
+              type="text"
+              name="contact[nome]"
+              autocomplete="name"
+              required
+            >
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input
+              type="email"
+              name="contact[email]"
+              autocomplete="email"
+              required
+            >
+          </label>
+
+          <label class="murgia-contact-footer__field--full">
+            <span>Messaggio</span>
+            <textarea
+              name="contact[body]"
+              rows="3"
+              required
+            ></textarea>
+          </label>
+        </div>
+
+        <button type="submit" class="murgia-contact-footer__submit">
+          <span>{{ section.settings.private_button }}</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      {% endform %}
+    </div>
+  </div>
+
+  <div class="murgia-contact-footer__business">
+    <div class="murgia-contact-footer__business-copy">
+      <p class="murgia-contact-footer__label">{{ section.settings.business_eyebrow }}</p>
+      <h2>{{ section.settings.business_heading }}</h2>
+
+      {% if section.settings.business_text != blank %}
+        <div class="rte">{{ section.settings.business_text }}</div>
+      {% endif %}
+    </div>
+
+    <div class="murgia-contact-footer__business-form">
+      {% form 'contact', id: 'MurgiaBusinessContactForm' %}
+        <input type="hidden" name="contact[Tipo richiesta]" value="Business">
+
+        {% if form.posted_successfully? %}
+          <p class="murgia-contact-footer__success" tabindex="-1">
+            Grazie. La richiesta è stata inviata.
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+
+        <div class="murgia-contact-footer__fields murgia-contact-footer__fields--business">
+          <label>
+            <span>Azienda / Locale</span>
+            <input type="text" name="contact[Azienda o locale]" required>
+          </label>
+
+          <label>
+            <span>Referente</span>
+            <input type="text" name="contact[Referente]" autocomplete="name" required>
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="contact[email]" autocomplete="email" required>
+          </label>
+
+          <label>
+            <span>Telefono</span>
+            <input type="tel" name="contact[Telefono]" autocomplete="tel">
+          </label>
+
+          <label>
+            <span>Città</span>
+            <input type="text" name="contact[Città]" autocomplete="address-level2">
+          </label>
+        </div>
+
+        <button type="submit" class="murgia-contact-footer__submit">
+          <span>{{ section.settings.business_button }}</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      {% endform %}
+    </div>
+  </div>
+
+  <div class="murgia-contact-footer__signature">
+    {{ section.settings.signature }}
+  </div>
+
+  <div class="murgia-contact-footer__bottom">
+    <p>
+      © {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text }}
+    </p>
+
+    <div class="murgia-contact-footer__legal">
+      {% if section.settings.privacy_url != blank %}
+        <a href="{{ section.settings.privacy_url }}">Privacy</a>
+      {% endif %}
+
+      {% if section.settings.cookie_url != blank %}
+        <a href="{{ section.settings.cookie_url }}">Cookie</a>
+      {% endif %}
+
+      {% if section.settings.terms_url != blank %}
+        <a href="{{ section.settings.terms_url }}">Termini</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    background: var(--footer-bg);
+  }
+
+  .murgia-contact-footer {
+    overflow: hidden;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+  }
+
+  .murgia-contact-footer__top,
+  .murgia-contact-footer__business,
+  .murgia-contact-footer__bottom {
+    width: min(calc(100% - 48px), 1440px);
+    margin: 0 auto;
+  }
+
+  .murgia-contact-footer__top {
+    padding: clamp(72px, 8vw, 124px) 0;
+    display: grid;
+    grid-template-columns: 1.15fr 0.65fr 0.75fr 1.45fr;
+    gap: clamp(34px, 5vw, 78px);
+  }
+
+  .murgia-contact-footer__logo {
+    width: min(220px, 100%);
+    height: auto;
+  }
+
+  .murgia-contact-footer__wordmark {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(48px, 4.6vw, 74px);
+    font-style: italic;
+    line-height: 0.9;
+  }
+
+  .murgia-contact-footer__brand-text {
+    max-width: 330px;
+    margin-top: 30px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .murgia-contact-footer__brand-text p,
+  .murgia-contact-footer__private-text p,
+  .murgia-contact-footer__business-copy .rte p {
+    margin: 0;
+  }
+
+  .murgia-contact-footer__responsibility {
+    margin: 26px 0 0;
+    color: var(--footer-muted);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  .murgia-contact-footer__label {
+    margin: 0 0 24px;
+    color: var(--footer-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .murgia-contact-footer__navigation ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .murgia-contact-footer__navigation li + li {
+    margin-top: 13px;
+  }
+
+  .murgia-contact-footer__navigation a,
+  .murgia-contact-footer__contacts a,
+  .murgia-contact-footer__legal a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 180ms ease;
+  }
+
+  .murgia-contact-footer__navigation a:hover,
+  .murgia-contact-footer__contacts a:hover,
+  .murgia-contact-footer__legal a:hover {
+    opacity: 0.62;
+  }
+
+  .murgia-contact-footer__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .murgia-contact-footer__contacts a + a {
+    margin-top: 13px;
+  }
+
+  .murgia-contact-footer__private-text {
+    margin-bottom: 24px;
+    color: var(--footer-muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .murgia-contact-footer__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .murgia-contact-footer__fields--business {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .murgia-contact-footer__fields label {
+    min-width: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .murgia-contact-footer__fields label span {
+    color: var(--footer-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .murgia-contact-footer__field--full {
+    grid-column: 1 / -1;
+  }
+
+  .murgia-contact-footer input,
+  .murgia-contact-footer textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 0;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--footer-text) 34%, transparent);
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    color: var(--footer-text);
+    font: inherit;
+  }
+
+  .murgia-contact-footer textarea {
+    resize: vertical;
+  }
+
+  .murgia-contact-footer input:focus,
+  .murgia-contact-footer textarea:focus {
+    border-bottom-color: var(--footer-accent);
+  }
+
+  .murgia-contact-footer__submit {
+    margin-top: 24px;
+    padding: 0 0 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    background: transparent;
+    color: var(--footer-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .murgia-contact-footer__submit span:last-child {
+    transition: transform 180ms ease;
+  }
+
+  .murgia-contact-footer__submit:hover span:last-child {
+    transform: translateX(5px);
+  }
+
+  .murgia-contact-footer__business {
+    padding: clamp(64px, 7vw, 104px) 0;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(46px, 8vw, 130px);
+    border-top: 1px solid color-mix(in srgb, var(--footer-text) 18%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--footer-text) 18%, transparent);
+  }
+
+  .murgia-contact-footer__business-copy h2 {
+    max-width: 9ch;
+    margin: 0 0 26px;
+    color: inherit;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(48px, 5.4vw, 84px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .murgia-contact-footer__business-copy .rte {
+    max-width: 500px;
+    color: var(--footer-muted);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .murgia-contact-footer__signature {
+    padding: clamp(44px, 6vw, 88px) 24px;
+    overflow: hidden;
+    color: color-mix(in srgb, var(--footer-text) 14%, transparent);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(64px, 11vw, 180px);
+    font-style: italic;
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .murgia-contact-footer__bottom {
+    padding: 24px 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: var(--footer-muted);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  .murgia-contact-footer__bottom p {
+    margin: 0;
+  }
+
+  .murgia-contact-footer__legal {
+    display: flex;
+    gap: 22px;
+  }
+
+  .murgia-contact-footer__success {
+    color: var(--footer-accent);
+  }
+
+  .murgia-contact-footer .errors {
+    margin-bottom: 18px;
+    color: var(--footer-accent);
+  }
+
+  @media screen and (max-width: 1100px) {
+    .murgia-contact-footer__top {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .murgia-contact-footer__top,
+    .murgia-contact-footer__business,
+    .murgia-contact-footer__bottom {
+      width: calc(100% - 40px);
+    }
+
+    .murgia-contact-footer__top {
+      padding: 64px 0;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .murgia-contact-footer__business {
+      padding: 56px 0;
+      grid-template-columns: 1fr;
+      gap: 42px;
+    }
+
+    .murgia-contact-footer__business-copy h2 {
+      font-size: clamp(46px, 14vw, 62px);
+    }
+
+    .murgia-contact-footer__fields,
+    .murgia-contact-footer__fields--business {
+      grid-template-columns: 1fr;
+    }
+
+    .murgia-contact-footer__field--full {
+      grid-column: auto;
+    }
+
+    .murgia-contact-footer__signature {
+      padding: 54px 12px;
+      font-size: clamp(54px, 18vw, 86px);
+      white-space: normal;
+    }
+
+    .murgia-contact-footer__bottom {
+      padding: 24px 0 32px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .murgia-contact-footer__legal {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .murgia-contact-footer__submit span:last-child {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Murgia Contact Footer",
+  "tag": "section",
+  "class": "murgia-contact-footer-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "richtext",
+      "id": "brand_text",
+      "label": "Descrizione brand",
+      "default": "<p>Aperitivo di Puglia. Botaniche mediterranee, tradizione e mixology contemporanea.</p>"
+    },
+    {
+      "type": "text",
+      "id": "responsibility_text",
+      "label": "Testo responsabilità",
+      "default": "Bevi responsabilmente • 20% Vol."
+    },
+    {
+      "type": "header",
+      "content": "Navigazione e contatti"
+    },
+    {
+      "type": "text",
+      "id": "navigation_heading",
+      "label": "Titolo navigazione",
+      "default": "Navigazione"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "contacts_heading",
+      "label": "Titolo contatti",
+      "default": "Contatti"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook"
+    },
+    {
+      "type": "header",
+      "content": "Form privati"
+    },
+    {
+      "type": "text",
+      "id": "private_heading",
+      "label": "Titolo",
+      "default": "Parliamo di Murgia"
+    },
+    {
+      "type": "richtext",
+      "id": "private_text",
+      "label": "Testo",
+      "default": "<p>Domande, eventi o collaborazioni? Saremo felici di ascoltarti.</p>"
+    },
+    {
+      "type": "text",
+      "id": "private_button",
+      "label": "Testo pulsante",
+      "default": "Invia"
+    },
+    {
+      "type": "header",
+      "content": "Form business"
+    },
+    {
+      "type": "text",
+      "id": "business_eyebrow",
+      "label": "Etichetta",
+      "default": "BUSINESS"
+    },
+    {
+      "type": "text",
+      "id": "business_heading",
+      "label": "Titolo",
+      "default": "Collabora con Murgia"
+    },
+    {
+      "type": "richtext",
+      "id": "business_text",
+      "label": "Testo",
+      "default": "<p>Bar, ristoranti, hotel, enoteche, cocktail bar e distributori. Porta l'autentico aperitivo pugliese nel tuo locale.</p>"
+    },
+    {
+      "type": "text",
+      "id": "business_button",
+      "label": "Testo pulsante",
+      "default": "Richiedi informazioni"
+    },
+    {
+      "type": "header",
+      "content": "Firma e legale"
+    },
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Firma grande",
+      "default": "Made by Apulians."
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright",
+      "default": "Aperitivo Murgia · Fratelli Lorè SRL"
+    },
+    {
+      "type": "url",
+      "id": "privacy_url",
+      "label": "Privacy"
+    },
+    {
+      "type": "url",
+      "id": "cookie_url",
+      "label": "Cookie"
+    },
+    {
+      "type": "url",
+      "id": "terms_url",
+      "label": "Termini"
+    },
+    {
+      "type": "header",
+      "content": "Colori"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Sfondo",
+      "default": "#3d285d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Testo",
+      "default": "#f7f3ee"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accento",
+      "default": "#e4b0b6"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Testo secondario",
+      "default": "#c9bdd1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Murgia Contact Footer"
+    }
+  ]
+}
+{% endschema %}
