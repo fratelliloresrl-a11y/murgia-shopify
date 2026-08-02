@@ -794,7 +794,47 @@
     white-space: nowrap;
   }
 }
+/* Murgia — stile menu desktop */
 
+@media screen and (min-width: 990px) {
+  .menu-list__list {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .menu-list__list-item {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+
+  .menu-list__link {
+    padding: 8px 0 !important;
+    color: #f7f3ee !important;
+    text-decoration: none !important;
+    opacity: 0.88;
+    transition: opacity 180ms ease;
+  }
+
+  .menu-list__link-title {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.025em !important;
+    text-transform: none !important;
+    white-space: nowrap !important;
+  }
+
+  .menu-list__link:hover {
+    opacity: 1;
+  }
+}
 {% endstylesheet %}
 
 {% schema %}
