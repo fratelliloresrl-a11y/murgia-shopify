@@ -28,6 +28,7 @@
         },
         "header-menu": {
           "type": "_header-menu",
+          "disabled": true,
           "static": true,
           "settings": {
             "menu": "main-menu",
@@ -49,6 +50,7 @@
           "blocks": {}
         }
       },
+      "disabled": true,
       "settings": {
         "logo_position": "left",
         "menu_position": "center",
@@ -64,11 +66,11 @@
         "localization_position": "right",
         "localization_row": "top",
         "section_width": "full-width",
-        "section_height": "standard",
+        "section_height": "compact",
         "enable_sticky_header": "scroll-up",
         "divider_width": 0,
         "divider_size": "page-width",
-        "border_width": 0,
+        "border_width": 1,
         "color_scheme_top": "scheme-1",
         "color_scheme_bottom": "",
         "color_scheme_transparent": "scheme-6",
@@ -79,9 +81,27 @@
         "enable_transparent_header_collection": true,
         "collection_color_scheme": "inverse"
       }
+    },
+    "murgia_header_hbCfn8": {
+      "type": "murgia-header",
+      "name": "Murgia Header",
+      "settings": {
+        "logo": "shopify://shop_images/logo-murgia.png",
+        "logo_width": 130,
+        "menu": "",
+        "desktop_height": 74,
+        "show_country_label": true,
+        "show_search": true,
+        "show_account": true,
+        "show_cart": true,
+        "background_color": "#efe2cf",
+        "text_color": "#24152e",
+        "home_text_color": "#f7f3ee"
+      }
     }
   },
   "order": [
-    "header_section"
+    "header_section",
+    "murgia_header_hbCfn8"
   ]
 }
