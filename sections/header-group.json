@@ -88,7 +88,7 @@
       "settings": {
         "logo": "shopify://shop_images/logo-murgia.png",
         "logo_width": 130,
-        "menu": "",
+        "menu": "main-menu",
         "desktop_height": 74,
         "show_country_label": true,
         "show_search": true,
