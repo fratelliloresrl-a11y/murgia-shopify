@@ -202,7 +202,7 @@
         "heading": "Il rito dell'aperitivo",
         "intro": "<p>Tre interpretazioni, un solo carattere.</p>",
         "cta_label": "Esplora tutti i twist",
-        "cta_link": "",
+        "cta_link": "shopify://pages/drink-list",
         "background_color": "#ede0cd",
         "text_color": "#3d285d",
         "accent_color": "#a15368"
