@@ -98,10 +98,31 @@
         "text_color": "#24152e",
         "home_text_color": "#f7f3ee"
       }
+    },
+    "murgia_drinklist_gallery_ULKC63": {
+      "type": "murgia-drinklist-gallery",
+      "blocks": {
+        "cocktail_zV3BzY": {
+          "type": "cocktail",
+          "settings": {
+            "title": "hubub"
+          }
+        }
+      },
+      "block_order": [
+        "cocktail_zV3BzY"
+      ],
+      "name": "Murgia Drink List",
+      "settings": {
+        "eyebrow": "DRINK LIST",
+        "title": "Twist Mediterranei",
+        "text": ""
+      }
     }
   },
   "order": [
     "header_section",
-    "murgia_header_hbCfn8"
+    "murgia_header_hbCfn8",
+    "murgia_drinklist_gallery_ULKC63"
   ]
 }
