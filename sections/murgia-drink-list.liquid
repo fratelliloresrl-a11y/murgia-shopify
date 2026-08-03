@@ -8,6 +8,27 @@
     --drink-line: {{ section.settings.line_color }};
   "
 >
+  <div class="murgia-drink-list__hero">
+  <div class="murgia-drink-list__hero-inner">
+    {% if section.settings.eyebrow != blank %}
+      <p class="murgia-drink-list__hero-eyebrow">
+        {{ section.settings.eyebrow }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h1 class="murgia-drink-list__hero-title">
+        {{ section.settings.heading }}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.intro != blank %}
+      <div class="murgia-drink-list__hero-intro rte">
+        {{ section.settings.intro }}
+      </div>
+    {% endif %}
+  </div>
+</div>
   <div class="murgia-drink-list__items">
     {% for block in section.blocks %}
       {% assign item_remainder = forloop.index0 | modulo: 2 %}
@@ -97,49 +118,97 @@
     background: var(--drink-light);
     color: var(--drink-text);
   }
+.murgia-drink-list__hero {
+  padding: clamp(72px, 7vw, 110px) 0;
+  background: #24152e;
+  color: #f3eadb;
+}
 
+.murgia-drink-list__hero-inner {
+  width: min(calc(100% - 48px), 1380px);
+  margin: 0 auto;
+}
+
+.murgia-drink-list__hero-eyebrow {
+  margin: 0 0 22px;
+  color: #cda85c;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+
+.murgia-drink-list__hero-title {
+  margin: 0;
+  color: inherit;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 6vw, 94px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.045em;
+}
+
+.murgia-drink-list__hero-intro {
+  max-width: 620px;
+  margin-top: 28px;
+  color: rgba(243, 234, 219, .74);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.murgia-drink-list__hero-intro p {
+  margin: 0;
+}
   .murgia-drink-list__item {
-    min-height: 680px;
-    display: grid;
-    grid-template-columns: minmax(0, 44%) minmax(0, 56%);
-    background: var(--drink-light);
-  }
+  width: min(calc(100% - 48px), 1380px);
+  min-height: 560px;
+  margin: 0 auto;
+  padding: 54px 0;
+  display: grid;
+  grid-template-columns: minmax(360px, 42%) minmax(0, 58%);
+  align-items: stretch;
+  background: var(--drink-light);
+  border-bottom: 1px solid var(--drink-line);
+}
 
   .murgia-drink-list__item--reverse {
-    grid-template-columns: minmax(0, 56%) minmax(0, 44%);
-  }
+  grid-template-columns: minmax(0, 58%) minmax(360px, 42%);
+}
 
   .murgia-drink-list__item--reverse .murgia-drink-list__media {
     order: 2;
   }
 
   .murgia-drink-list__media {
-    min-height: 680px;
-    overflow: hidden;
-    background: #d8c7b4;
-  }
+  min-height: 520px;
+  max-height: 560px;
+  overflow: hidden;
+  background: #d8c7b4;
+}
 
-  .murgia-drink-list__image,
-  .murgia-drink-list__placeholder {
-    width: 100%;
-    height: 100%;
-    min-height: 680px;
-    display: block;
-    object-fit: cover;
-    transition: transform 700ms cubic-bezier(.2, .65, .25, 1);
-  }
+ .murgia-drink-list__image,
+.murgia-drink-list__placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  max-height: 560px;
+  display: block;
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(.2, .65, .25, 1);
+}
 
   .murgia-drink-list__item:hover .murgia-drink-list__image {
     transform: scale(1.018);
   }
 
   .murgia-drink-list__content {
-    padding: clamp(56px, 6vw, 92px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--drink-light);
-  }
+  padding: clamp(28px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--drink-light);
+}
 
   .murgia-drink-list__content h2 {
     max-width: 13ch;
@@ -195,7 +264,7 @@
 
   .murgia-drink-list__recipe {
     width: 100%;
-    margin-top: 42px;
+    margin-top: 38px;
     display: grid;
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     gap: clamp(36px, 5vw, 76px);
@@ -237,7 +306,7 @@
 
   .murgia-drink-list__garnish {
     width: 100%;
-    margin-top: 38px;
+    margin-top: 28px;
     padding-top: 26px;
     border-top: 1px solid var(--drink-line);
   }
@@ -261,10 +330,10 @@
 
   @media screen and (max-width: 989px) {
     .murgia-drink-list__item,
-    .murgia-drink-list__item--reverse {
-      min-height: 0;
-      grid-template-columns: 1fr;
-    }
+.murgia-drink-list__item--reverse {
+  width: 100%;
+  padding: 0;
+}
 
     .murgia-drink-list__item--reverse .murgia-drink-list__media {
       order: 0;
@@ -278,13 +347,29 @@
   }
 
   @media screen and (max-width: 749px) {
-    .murgia-drink-list__content {
-      padding: 46px 20px 58px;
-    }
+    .murgia-drink-list__content h2 {
+  font-size: clamp(40px, 11vw, 54px);
+  white-space: normal;
+}
 
     .murgia-drink-list__content h2 {
-      font-size: clamp(46px, 14vw, 64px);
-    }
+  max-width: none;
+  margin: 0;
+  color: inherit;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 4vw, 68px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.04em;
+  text-transform: none !important;
+  white-space: nowrap;
+}
+@media screen and (max-width: 1200px) {
+  .murgia-drink-list__content h2 {
+    font-size: clamp(38px, 4vw, 56px);
+  }
+}
 
     .murgia-drink-list__recipe {
       grid-template-columns: 1fr;
@@ -314,6 +399,24 @@
     "templates": ["page"]
   },
   "settings": [
+    {
+  "type": "text",
+  "id": "eyebrow",
+  "label": "Etichetta",
+  "default": "MIXOLOGY"
+},
+{
+  "type": "text",
+  "id": "heading",
+  "label": "Titolo",
+  "default": "Murgia Cocktails"
+},
+{
+  "type": "richtext",
+  "id": "intro",
+  "label": "Introduzione",
+  "default": "<p>Twist sui grandi classici con Aperitivo Murgia.</p>"
+},
     {
       "type": "header",
       "content": "Colori"
