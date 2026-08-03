@@ -1,95 +1,124 @@
 <section
   id="MurgiaDrinkList-{{ section.id }}"
   class="murgia-drink-list"
-  style="--drink-bg: {{ section.settings.background_color }}; --drink-text: {{ section.settings.text_color }}; --drink-accent: {{ section.settings.accent_color }}; --drink-light: {{ section.settings.light_background }};"
+  style="
+    --drink-bg: {{ section.settings.background_color }};
+    --drink-text: {{ section.settings.text_color }};
+    --drink-accent: {{ section.settings.accent_color }};
+    --drink-light: {{ section.settings.light_background }};
+  "
 >
- 
   <div class="murgia-drink-list__items">
     {% for block in section.blocks %}
-  {% assign item_remainder = forloop.index0 | modulo: 2 %}
+      {% assign item_remainder = forloop.index0 | modulo: 2 %}
 
-  <article
-    id="{{ block.settings.anchor | default: block.settings.title | handleize }}"
-    class="murgia-drink-list__item{% if item_remainder == 1 %} murgia-drink-list__item--reverse{% endif %}"
+      <article
+        id="{{ block.settings.anchor | default: block.settings.title | handleize }}"
+        class="murgia-drink-list__item{% if item_remainder == 1 %} murgia-drink-list__item--reverse{% endif %}"
+        {{ block.shopify_attributes }}
       >
         <div class="murgia-drink-list__media">
           {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 1800 | image_tag: class: 'murgia-drink-list__image', widths: '600, 900, 1200, 1500, 1800', sizes: '(max-width: 749px) 100vw, 52vw', loading: 'lazy' }}
+            {{
+              block.settings.image
+              | image_url: width: 1800
+              | image_tag:
+                class: 'murgia-drink-list__image',
+                widths: '600, 900, 1200, 1500, 1800',
+                sizes: '(max-width: 749px) 100vw, 50vw',
+                loading: 'lazy'
+            }}
           {% else %}
             {{ 'lifestyle-1' | placeholder_svg_tag: 'murgia-drink-list__placeholder' }}
           {% endif %}
         </div>
 
         <div class="murgia-drink-list__content">
-          {% if block.settings.title != blank %}<h2>{{ block.settings.title }}</h2>{% endif %}
-          {% if block.settings.tagline != blank %}<p class="murgia-drink-list__tagline">{{ block.settings.tagline }}</p>{% endif %}
-
-          {% if block.settings.profile != blank %}
-            <div class="murgia-drink-list__profile">
-              <p class="murgia-drink-list__label">{{ section.settings.profile_label }}</p>
-              <div class="rte">{{ block.settings.profile }}</div>
-            </div>
+          {% if block.settings.title != blank %}
+            <h2>{{ block.settings.title }}</h2>
           {% endif %}
 
-          {% if block.settings.link_label != blank %}
-            <a class="murgia-drink-list__link" href="{{ block.settings.link | default: '#' }}">
-              <span>{{ block.settings.link_label }}</span><span aria-hidden="true">→</span>
-            </a>
+          <div class="murgia-drink-list__difficulty">
+            <span>Difficoltà</span>
+
+            <div
+              class="murgia-drink-list__difficulty-icons"
+              aria-label="Difficoltà {{ block.settings.difficulty }} su 3"
+            >
+              {% for level in (1..3) %}
+                <span class="{% if level <= block.settings.difficulty %}is-active{% endif %}">▮</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="murgia-drink-list__recipe">
+            {% if block.settings.ingredients != blank %}
+              <div class="murgia-drink-list__ingredients">
+                <p class="murgia-drink-list__label">Ingredienti</p>
+                <div class="rte">{{ block.settings.ingredients }}</div>
+              </div>
+            {% endif %}
+
+            {% if block.settings.preparation != blank %}
+              <div class="murgia-drink-list__preparation">
+                <p class="murgia-drink-list__label">Preparazione</p>
+                <div class="rte">{{ block.settings.preparation }}</div>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.garnish != blank %}
+            <div class="murgia-drink-list__garnish">
+              <p class="murgia-drink-list__label">Garnish</p>
+              <p>{{ block.settings.garnish }}</p>
+            </div>
           {% endif %}
         </div>
       </article>
     {% endfor %}
   </div>
-
-  {% if section.settings.final_heading != blank or section.settings.final_text != blank %}
-    <div class="murgia-drink-list__final">
-      <div class="murgia-drink-list__final-inner">
-        {% if section.settings.final_heading != blank %}<h2>{{ section.settings.final_heading }}</h2>{% endif %}
-        {% if section.settings.final_text != blank %}<div class="rte">{{ section.settings.final_text }}</div>{% endif %}
-        {% if section.settings.final_button_label != blank %}
-          <a class="murgia-drink-list__final-link" href="{{ section.settings.final_button_link | default: routes.all_products_collection_url }}">
-            <span>{{ section.settings.final_button_label }}</span><span aria-hidden="true">→</span>
-          </a>
-        {% endif %}
-      </div>
-    </div>
-  {% endif %}
 </section>
 
 <style>
-  #shopify-section-{{ section.id }} { background: var(--drink-bg); }
-  .murgia-drink-list { overflow: hidden; background: var(--drink-bg); color: var(--drink-text); }
-  .murgia-drink-list__intro p, .murgia-drink-list__profile p, .murgia-drink-list__final .rte p { margin: 0; }
+  #shopify-section-{{ section.id }} { background: var(--drink-light); }
+  .murgia-drink-list { overflow: hidden; background: var(--drink-light); color: var(--drink-text); }
   .murgia-drink-list__items { background: var(--drink-light); }
-  .murgia-drink-list__item { min-height: 760px; display: grid; grid-template-columns: 1fr 1fr; background: var(--drink-light); }
+  .murgia-drink-list__item { min-height: 720px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--drink-light); }
   .murgia-drink-list__item--reverse .murgia-drink-list__media { order: 2; }
-  .murgia-drink-list__media { min-height: 760px; overflow: hidden; background: #d8c7b4; }
-  .murgia-drink-list__image, .murgia-drink-list__placeholder { width: 100%; height: 100%; min-height: 760px; display: block; object-fit: cover; transition: transform 700ms cubic-bezier(.2,.65,.25,1); }
+  .murgia-drink-list__media { min-height: 720px; overflow: hidden; background: #d8c7b4; }
+  .murgia-drink-list__image, .murgia-drink-list__placeholder { width: 100%; height: 100%; min-height: 720px; display: block; object-fit: cover; transition: transform 700ms cubic-bezier(.2, .65, .25, 1); }
   .murgia-drink-list__item:hover .murgia-drink-list__image { transform: scale(1.025); }
-  .murgia-drink-list__content { padding: clamp(72px, 8vw, 130px); display: flex; flex-direction: column; justify-content: center; background: var(--drink-light); }
-  .murgia-drink-list__content h2 { max-width: 9ch; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(56px, 5.8vw, 92px); font-style: italic; font-weight: 400; line-height: .94; letter-spacing: -.05em; }
-  .murgia-drink-list__tagline { max-width: 560px; margin: 28px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(21px, 1.8vw, 30px); font-style: italic; line-height: 1.3; }
-  .murgia-drink-list__profile { max-width: 520px; margin-top: 42px; padding-top: 28px; border-top: 1px solid color-mix(in srgb, var(--drink-text) 20%, transparent); font-size: 16px; line-height: 1.7; }
-  .murgia-drink-list__link, .murgia-drink-list__final-link { width: fit-content; margin-top: 34px; padding-bottom: 8px; display: inline-flex; align-items: center; gap: 14px; border-bottom: 1px solid currentColor; color: inherit; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-  .murgia-drink-list__link span:last-child, .murgia-drink-list__final-link span:last-child { transition: transform 180ms ease; }
-  .murgia-drink-list__link:hover span:last-child, .murgia-drink-list__final-link:hover span:last-child { transform: translateX(5px); }
-  .murgia-drink-list__final { padding: clamp(100px, 12vw, 180px) 0; background: var(--drink-bg); color: #f7f3ee; text-align: center; }
-  .murgia-drink-list__final-inner { width: min(calc(100% - 48px), 980px); margin: 0 auto; }
-  .murgia-drink-list__final h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(58px, 7vw, 108px); font-style: italic; font-weight: 400; line-height: .95; letter-spacing: -.05em; }
-  .murgia-drink-list__final .rte { max-width: 620px; margin: 28px auto 0; font-size: 18px; line-height: 1.65; }
-  .murgia-drink-list__final-link { margin-inline: auto; }
+  .murgia-drink-list__content { padding: clamp(56px, 6vw, 96px); display: flex; flex-direction: column; justify-content: center; background: var(--drink-light); }
+  .murgia-drink-list__content h2 { max-width: 12ch; margin: 0; color: inherit; font-family: Georgia, "Times New Roman", serif; font-size: clamp(50px, 5vw, 78px); font-style: normal; font-weight: 400; line-height: .98; letter-spacing: -.04em; }
+  .murgia-drink-list__difficulty { margin-top: 24px; display: flex; align-items: center; gap: 14px; }
+  .murgia-drink-list__difficulty > span, .murgia-drink-list__label { margin: 0; color: var(--drink-text); font-size: 10px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; }
+  .murgia-drink-list__difficulty-icons { display: flex; align-items: flex-end; gap: 5px; }
+  .murgia-drink-list__difficulty-icons span { color: color-mix(in srgb, var(--drink-text) 28%, transparent); font-size: 22px; line-height: 1; }
+  .murgia-drink-list__difficulty-icons span.is-active { color: var(--drink-text); }
+  .murgia-drink-list__recipe { width: 100%; margin-top: 42px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(34px, 5vw, 72px); }
+  .murgia-drink-list__ingredients, .murgia-drink-list__preparation { min-width: 0; }
+  .murgia-drink-list__recipe .rte { margin-top: 18px; font-size: 15px; line-height: 1.7; }
+  .murgia-drink-list__recipe .rte p { margin: 0; }
+  .murgia-drink-list__recipe .rte ul, .murgia-drink-list__recipe .rte ol { margin: 0; padding-left: 20px; }
+  .murgia-drink-list__recipe .rte li + li { margin-top: 8px; }
+  .murgia-drink-list__garnish { width: 100%; margin-top: 38px; padding-top: 26px; border-top: 1px solid color-mix(in srgb, var(--drink-text) 18%, transparent); }
+  .murgia-drink-list__garnish p:last-child { margin: 16px 0 0; font-size: 15px; line-height: 1.6; }
+
   @media screen and (max-width: 989px) {
     .murgia-drink-list__item { min-height: 0; grid-template-columns: 1fr; }
     .murgia-drink-list__item--reverse .murgia-drink-list__media { order: 0; }
     .murgia-drink-list__media, .murgia-drink-list__image, .murgia-drink-list__placeholder { min-height: 72vw; }
   }
+
   @media screen and (max-width: 749px) {
-    .murgia-drink-list__hero h1 { font-size: clamp(58px, 18vw, 82px); }
-    .murgia-drink-list__content { padding: 54px 20px 64px; }
-    .murgia-drink-list__content h2 { font-size: clamp(48px, 14vw, 66px); }
-    .murgia-drink-list__media, .murgia-drink-list__image, .murgia-drink-list__placeholder { min-height: 120vw; }
-    .murgia-drink-list__final { padding: 84px 0; }
-    .murgia-drink-list__final-inner { width: calc(100% - 40px); }
+    .murgia-drink-list__content { padding: 48px 20px 60px; }
+    .murgia-drink-list__content h2 { font-size: clamp(46px, 14vw, 64px); }
+    .murgia-drink-list__recipe { grid-template-columns: 1fr; gap: 32px; }
+    .murgia-drink-list__media, .murgia-drink-list__image, .murgia-drink-list__placeholder { min-height: 118vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .murgia-drink-list__image { transition: none; }
   }
 </style>
 
@@ -100,16 +129,10 @@
   "class": "murgia-drink-list-section",
   "enabled_on": { "templates": ["page"] },
   "settings": [
-    { "type": "text", "id": "profile_label", "label": "Titolo profilo", "default": "PROFILO" },
-    { "type": "header", "content": "Finale" },
-    { "type": "text", "id": "final_heading", "label": "Titolo finale", "default": "Tre Twist. Una sola identità." },
-    { "type": "richtext", "id": "final_text", "label": "Testo finale", "default": "<p>Scopri l'aperitivo che dà forma a ogni cocktail.</p>" },
-    { "type": "text", "id": "final_button_label", "label": "Etichetta pulsante", "default": "Scopri la bottiglia" },
-    { "type": "url", "id": "final_button_link", "label": "Link pulsante" },
     { "type": "header", "content": "Colori" },
     { "type": "color", "id": "background_color", "label": "Sfondo scuro", "default": "#3d285d" },
     { "type": "color", "id": "light_background", "label": "Sfondo chiaro", "default": "#efe2cf" },
-    { "type": "color", "id": "text_color", "label": "Testo", "default": "#3d285d" },
+    { "type": "color", "id": "text_color", "label": "Testo", "default": "#24152e" },
     { "type": "color", "id": "accent_color", "label": "Accento", "default": "#b97a8d" }
   ],
   "blocks": [
@@ -119,11 +142,11 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Immagine" },
         { "type": "text", "id": "anchor", "label": "Ancora URL", "info": "Esempio: murgia-spritz" },
-        { "type": "text", "id": "title", "label": "Nome cocktail", "default": "Murgia Spritz" },
-        { "type": "text", "id": "tagline", "label": "Frase", "default": "Il tramonto, servito in un calice." },
-        { "type": "richtext", "id": "profile", "label": "Profilo aromatico", "default": "<p>Fresco · Mediterraneo · Agrumato</p>" },
-        { "type": "text", "id": "link_label", "label": "Etichetta link", "default": "Scopri il cocktail" },
-        { "type": "url", "id": "link", "label": "Link pagina cocktail" }
+        { "type": "text", "id": "title", "label": "Nome cocktail", "default": "Nome cocktail" },
+        { "type": "range", "id": "difficulty", "label": "Difficoltà", "min": 1, "max": 3, "step": 1, "default": 2 },
+        { "type": "richtext", "id": "ingredients", "label": "Ingredienti" },
+        { "type": "richtext", "id": "preparation", "label": "Preparazione" },
+        { "type": "text", "id": "garnish", "label": "Garnish" }
       ]
     }
   ],
@@ -131,9 +154,12 @@
     {
       "name": "Murgia Drink List",
       "blocks": [
-        { "type": "cocktail", "settings": { "anchor": "murgia-spritz", "title": "Murgia Spritz", "tagline": "Il tramonto, servito in un calice.", "profile": "<p>Fresco · Mediterraneo · Agrumato</p>" } },
-        { "type": "cocktail", "settings": { "anchor": "apulian-negroni", "title": "Apulian Negroni", "tagline": "Il classico, con il carattere della Murgia.", "profile": "<p>Intenso · Speziato · Agrumato</p>" } },
-        { "type": "cocktail", "settings": { "anchor": "cosmopuglitano", "title": "Cosmopuglitano", "tagline": "Quando la Puglia incontra la notte.", "profile": "<p>Floreale · Fruttato · Vibrante</p>" } }
+        { "type": "cocktail", "settings": { "anchor": "murgia-spritz", "title": "Murgia Spritz", "difficulty": 1, "ingredients": "<ul><li>4 parti di Prosecco</li><li>1 parte di soda</li><li>1 parte di Murgia</li></ul>", "preparation": "<ol><li>Riempire un calice grande di ghiaccio</li><li>Versare prima Prosecco e soda</li><li>Completare con Murgia</li></ol>", "garnish": "Rametto di timo + fetta d'arancia" } },
+        { "type": "cocktail", "settings": { "anchor": "americano", "title": "Americano", "difficulty": 1, "ingredients": "<ul><li>3 cl bitter rosso</li><li>3 cl Aperitivo Murgia</li><li>Soda a riempire</li></ul>", "preparation": "<ol><li>Bicchiere con ghiaccio</li><li>Bitter e Murgia</li><li>Completare con soda</li><li>Mescolare delicatamente</li></ol>", "garnish": "Twist di limone espresso" } },
+        { "type": "cocktail", "settings": { "anchor": "apulian-negroni", "title": "Apulian Negroni", "difficulty": 2, "ingredients": "<ul><li>3 cl Gin London Dry</li><li>2 cl Aperitivo Murgia</li><li>3 cl bitter rosso</li><li>Ghiaccio grande</li></ul>", "preparation": "<ol><li>Mixing glass con ghiaccio</li><li>Versare gin, Murgia e bitter rosso</li><li>Mescolare con barspoon per 20 secondi</li><li>Filtrare in tumbler con ghiaccio grande</li></ol>", "garnish": "Twist d'arancia espresso" } },
+        { "type": "cocktail", "settings": { "anchor": "gino-frizz", "title": "Gino Frizz", "difficulty": 2, "ingredients": "<ul><li>4 cl di gin</li><li>2 cl succo di limone</li><li>2 cl Aperitivo Murgia</li><li>Completare con tonica</li></ul>", "preparation": "<ol><li>Shakerare con ghiaccio gin, succo e Murgia</li><li>Doppio filtraggio in tumbler alto</li><li>Completare con tonica</li></ol>", "garnish": "Arancia secca" } },
+        { "type": "cocktail", "settings": { "anchor": "cosmopuglitano", "title": "Cosmopuglitano", "difficulty": 3, "ingredients": "<ul><li>4 cl vodka</li><li>1,5 cl triple sec all'arancia</li><li>1,5 cl succo di lime</li><li>2 cl Aperitivo Murgia</li></ul>", "preparation": "<ol><li>Shakerare con ghiaccio tutto insieme</li><li>Doppio filtraggio in coppetta ghiacciata</li></ol>", "garnish": "Fiori + arancia secca" } },
+        { "type": "cocktail", "settings": { "anchor": "puglia-sour", "title": "Puglia Sour", "difficulty": 3, "ingredients": "<ul><li>6 cl di gin</li><li>3 cl succo di limone</li><li>2 cl Aperitivo Murgia</li><li>Albume d'uovo</li></ul>", "preparation": "<ol><li>Shakerare con ghiaccio e albume</li><li>Aggiungere gin, succo e Murgia</li><li>Doppio filtraggio in coppetta ghiacciata</li></ol>", "garnish": "3 gocce di olio EVO pugliese" } }
       ]
     }
   ]
