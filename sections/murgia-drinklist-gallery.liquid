@@ -1,0 +1,97 @@
+<section class="murgia-drinklist">
+
+  <div class="murgia-drinklist__header">
+
+    {% if section.settings.eyebrow != blank %}
+      <p class="murgia-drinklist__eyebrow">
+        {{ section.settings.eyebrow }}
+      </p>
+    {% endif %}
+
+    <h1 class="murgia-drinklist__title">
+      {{ section.settings.title }}
+    </h1>
+
+    {% if section.settings.text != blank %}
+      <div class="murgia-drinklist__intro">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+
+  </div>
+
+
+  <div class="murgia-drinklist__cocktails">
+
+    {% for block in section.blocks %}
+
+      <div class="murgia-drink">
+
+        Cocktail
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+</section>
+
+
+{% schema %}
+{
+  "name": "Murgia Drink List",
+  "settings": [
+
+    {
+      "type":"text",
+      "id":"eyebrow",
+      "label":"Eyebrow",
+      "default":"DRINK LIST"
+    },
+
+    {
+      "type":"text",
+      "id":"title",
+      "label":"Titolo",
+      "default":"Twist Mediterranei"
+    },
+
+    {
+      "type":"richtext",
+      "id":"text",
+      "label":"Introduzione"
+    }
+
+  ],
+
+  "blocks":[
+
+    {
+      "type":"cocktail",
+      "name":"Cocktail",
+
+      "settings":[
+
+        {
+          "type":"text",
+          "id":"title",
+          "label":"Nome cocktail"
+        }
+
+      ]
+
+    }
+
+  ],
+
+  "presets":[
+
+    {
+      "name":"Murgia Drink List"
+    }
+
+  ]
+
+}
+{% endschema %}
