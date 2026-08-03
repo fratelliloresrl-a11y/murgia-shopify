@@ -44,44 +44,50 @@
   "settings": [
 
     {
-      "type":"text",
-      "id":"eyebrow",
-      "label":"Eyebrow",
-      "default":"DRINK LIST"
-    },
-
-    {
-      "type":"text",
-      "id":"title",
-      "label":"Titolo",
-      "default":"Twist Mediterranei"
-    },
-
-    {
-      "type":"richtext",
-      "id":"text",
-      "label":"Introduzione"
-    }
-
-  ],
-
-  "blocks":[
-
-    {
-      "type":"cocktail",
-      "name":"Cocktail",
-
-      "settings":[
-
-        {
-          "type":"text",
-          "id":"title",
-          "label":"Nome cocktail"
-        }
-
-      ]
-
-    }
+  "type": "image_picker",
+  "id": "image",
+  "label": "Foto cocktail"
+},
+{
+  "type": "checkbox",
+  "id": "image_left",
+  "label": "Foto a sinistra",
+  "default": true
+},
+{
+  "type": "text",
+  "id": "title",
+  "label": "Nome cocktail"
+},
+{
+  "type": "textarea",
+  "id": "description",
+  "label": "Descrizione"
+},
+{
+  "type": "range",
+  "id": "difficulty",
+  "label": "Difficoltà",
+  "min": 1,
+  "max": 3,
+  "step": 1,
+  "default": 2
+},
+{
+  "type": "richtext",
+  "id": "ingredients",
+  "label": "Ingredienti"
+},
+{
+  "type": "richtext",
+  "id": "preparation",
+  "label": "Preparazione"
+},
+{
+  "type": "text",
+  "id": "garnish",
+  "label": "Garnish"
+}
 
   ],
 
