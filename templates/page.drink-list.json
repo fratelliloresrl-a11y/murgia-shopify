@@ -39,12 +39,13 @@
         "cocktail_qAT6cn": {
           "type": "cocktail",
           "settings": {
+            "image": "shopify://shop_images/NEGRON.png",
             "anchor": "",
-            "title": "Murgia Spritz",
+            "title": "Apulian Negroni",
             "difficulty": 2,
-            "ingredients": "",
-            "preparation": "",
-            "garnish": ""
+            "ingredients": "<p>• 4 cl di gin<br/>• 2 cl succo di limone<br/>• 2 cl Aperitivo Murgia<br/>• Tonica a riempire</p>",
+            "preparation": "<p><strong>1. </strong>Shakerare con ghiaccio gin, succo e Murgia<br/><strong>2. </strong>Effettuare un doppio filtraggio in un tumbler alto<br/><strong>3. </strong>Completare con tonica</p>",
+            "garnish": "Arancia secca"
           }
         },
         "cocktail_JAKYU7": {
