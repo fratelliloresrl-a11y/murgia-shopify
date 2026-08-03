@@ -63,12 +63,13 @@
         "cocktail_HgqfJU": {
           "type": "cocktail",
           "settings": {
+            "image": "shopify://shop_images/PUGLASOUR.png",
             "anchor": "",
-            "title": "Murgia Spritz",
-            "difficulty": 2,
-            "ingredients": "",
-            "preparation": "",
-            "garnish": ""
+            "title": "Puglia Sour",
+            "difficulty": 3,
+            "ingredients": "<p>• 6 cl di gin<br/>• 3 cl succo di limone<br/>• 2 cl Aperitivo Murgia<br/>• Albume d’uovo</p>",
+            "preparation": "<p><strong>1. </strong>Shakerare con ghiaccio e albume<br/><strong>2. </strong>Aggiungere gin, succo e Murgia<br/><strong>3. </strong>Effettuare un doppio filtraggio in una coppetta ghiacciata</p>",
+            "garnish": "3 gocce di olio EVO pugliese"
           }
         },
         "cocktail_6PizHh": {
