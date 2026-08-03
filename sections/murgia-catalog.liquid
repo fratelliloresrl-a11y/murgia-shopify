@@ -23,7 +23,13 @@
 
               <div class="murgia-catalog-card__body">
                 <div class="murgia-catalog-card__topline">
-                  <h2>{{ product.title }}</h2>
+                  <h2>
+{% if block.settings.custom_title != blank %}
+{{ block.settings.custom_title }}
+{% else %}
+{{ product.title }}
+{% endif %}
+</h2>
                   <p class="murgia-catalog-card__price">
                     {% if product.compare_at_price > product.price %}<span class="murgia-catalog-card__compare">{{ product.compare_at_price | money }}</span>{% endif %}
                     <span>{{ product.price | money }}</span>
@@ -47,7 +53,7 @@
 <style>
 #shopify-section-{{ section.id }}{background:var(--catalog-bg)}
 .murgia-catalog{background:var(--catalog-bg);color:var(--catalog-text)}
-.murgia-catalog__inner{width:min(calc(100% - 48px),1380px);margin:0 auto;padding:clamp(76px,8vw,124px) 0 clamp(90px,10vw,150px)}
+.murgia-catalog__inner{width:min(calc(100% - 48px),1180px);margin:0 auto;padding:clamp(76px,8vw,124px) 0 clamp(90px,10vw,150px)}
 .murgia-catalog__header{max-width:760px;margin-bottom:clamp(54px,7vw,90px)}
 .murgia-catalog__eyebrow{margin:0 0 18px;color:var(--catalog-accent);font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase}
 .murgia-catalog__header h1{margin:0;color:inherit;font-family:Georgia,"Times New Roman",serif;font-size:clamp(58px,6vw,96px);font-weight:400;line-height:.96;letter-spacing:-.05em;text-transform:none!important}
@@ -72,11 +78,33 @@
 .murgia-catalog-card:hover .murgia-catalog-card__image{transform:scale(1.025)}
 .murgia-catalog-card__badge{position:absolute;top:16px;left:16px;z-index:2;padding:8px 12px;background:var(--catalog-accent);color:#24152e;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
 .murgia-catalog-card__body{padding-top:20px}
-.murgia-catalog-card__topline{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start}
-.murgia-catalog-card h2{margin:0;color:inherit;font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,2.4vw,40px);font-weight:400;line-height:1.06;letter-spacing:-.03em;text-transform:none!important}
+.murgia-catalog-card__topline{
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+gap:18px;
+align-items:start;
+min-height:70px;
+}
+.murgia-catalog-card h2{
+margin:0;
+color:inherit;
+font-family:Georgia,"Times New Roman",serif;
+font-size:clamp(24px,2vw,34px);
+font-weight:400;
+line-height:1.08;
+letter-spacing:-.02em;
+text-transform:none!important;
+}
 .murgia-catalog-card__price{margin:3px 0 0;display:flex;gap:8px;font-size:15px;white-space:nowrap}
 .murgia-catalog-card__compare{opacity:.55;text-decoration:line-through}
-.murgia-catalog-card__description{max-width:52ch;margin:12px 0 0;font-size:14px;line-height:1.55;opacity:.8}
+.murgia-catalog-card__description{
+max-width:46ch;
+margin:10px 0 0;
+font-size:13px;
+line-height:1.55;
+opacity:.78;
+min-height:42px;
+}
 @media screen and (max-width:749px){
   .murgia-catalog__inner{width:calc(100% - 40px);padding:58px 0 86px}
   .murgia-catalog__header{margin-bottom:42px}
@@ -109,6 +137,7 @@
       "name":"Prodotto",
       "settings":[
         {"type":"product","id":"product","label":"Prodotto"},
+        {"type":"text","id":"custom_title","label":"Titolo mostrato"},
         {"type":"text","id":"badge","label":"Etichetta","default":"Premium"},
         {"type":"textarea","id":"description","label":"Descrizione breve","info":"Lascia vuoto per usare la descrizione del prodotto."}
       ]
