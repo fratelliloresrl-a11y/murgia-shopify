@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "murgia-story-page",
+      "type": "murgia-drink-list",
       "settings": {}
     }
   },
