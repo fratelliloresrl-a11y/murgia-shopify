@@ -23,10 +23,82 @@
             "link_label": "Scopri il cocktail",
             "link": ""
           }
+        },
+        "cocktail_TYewc7": {
+          "type": "cocktail",
+          "settings": {
+            "anchor": "",
+            "title": "Murgia Spritz",
+            "tagline": "Il tramonto, servito in un calice.",
+            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
+            "link_label": "Scopri il cocktail",
+            "link": ""
+          }
+        },
+        "cocktail_qAT6cn": {
+          "type": "cocktail",
+          "settings": {
+            "anchor": "",
+            "title": "Murgia Spritz",
+            "tagline": "Il tramonto, servito in un calice.",
+            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
+            "link_label": "Scopri il cocktail",
+            "link": ""
+          }
+        },
+        "cocktail_JAKYU7": {
+          "type": "cocktail",
+          "settings": {
+            "anchor": "",
+            "title": "Murgia Spritz",
+            "tagline": "Il tramonto, servito in un calice.",
+            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
+            "link_label": "Scopri il cocktail",
+            "link": ""
+          }
+        },
+        "cocktail_HgqfJU": {
+          "type": "cocktail",
+          "settings": {
+            "anchor": "",
+            "title": "Murgia Spritz",
+            "tagline": "Il tramonto, servito in un calice.",
+            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
+            "link_label": "Scopri il cocktail",
+            "link": ""
+          }
+        },
+        "cocktail_6PizHh": {
+          "type": "cocktail",
+          "settings": {
+            "anchor": "",
+            "title": "Murgia Spritz",
+            "tagline": "Il tramonto, servito in un calice.",
+            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
+            "link_label": "Scopri il cocktail",
+            "link": ""
+          }
+        },
+        "cocktail_XDCMVQ": {
+          "type": "cocktail",
+          "settings": {
+            "anchor": "",
+            "title": "Murgia Spritz",
+            "tagline": "Il tramonto, servito in un calice.",
+            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
+            "link_label": "Scopri il cocktail",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "cocktail_rfHDfq"
+        "cocktail_rfHDfq",
+        "cocktail_TYewc7",
+        "cocktail_qAT6cn",
+        "cocktail_JAKYU7",
+        "cocktail_HgqfJU",
+        "cocktail_6PizHh",
+        "cocktail_XDCMVQ"
       ],
       "settings": {
         "eyebrow": "DRINK LIST",
