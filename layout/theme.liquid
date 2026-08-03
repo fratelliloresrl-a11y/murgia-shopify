@@ -5,8 +5,9 @@
   {% endif %}
   lang="{{ request.locale.iso_code }}"
 >
-  {{ 'murgia.css' | asset_url | stylesheet_tag }}
   <head>
+    {{ 'murgia.css' | asset_url | stylesheet_tag }}
+    
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
