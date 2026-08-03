@@ -27,12 +27,13 @@
         "cocktail_TYewc7": {
           "type": "cocktail",
           "settings": {
+            "image": "shopify://shop_images/AMERCANO.png",
             "anchor": "",
-            "title": "Murgia Spritz",
-            "difficulty": 2,
-            "ingredients": "",
-            "preparation": "",
-            "garnish": ""
+            "title": "Americano",
+            "difficulty": 1,
+            "ingredients": "<p>• 3 cl bitter rosso<br/>• 3 cl Aperitivo Murgia<br/>• Soda a riempire</p>",
+            "preparation": "<p><strong>1. </strong>Riempire il bicchiere di ghiaccio<br/><strong>2. </strong>Versare bitter e Murgia<br/><strong>3. </strong>Completare con soda<br/>4. Mescolare delicatamente</p>",
+            "garnish": "Twist di limone espresso"
           }
         },
         "cocktail_qAT6cn": {
