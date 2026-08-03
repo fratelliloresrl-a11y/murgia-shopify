@@ -11,7 +11,36 @@
   "sections": {
     "main": {
       "type": "murgia-catalog",
-      "settings": {}
+      "blocks": {
+        "product_iFifFz": {
+          "type": "product",
+          "settings": {
+            "product": "murgia-aperitivo-di-puglia",
+            "badge": "Premium",
+            "description": ""
+          }
+        },
+        "product_43k3cK": {
+          "type": "product",
+          "settings": {
+            "product": "box-6-bottiglie-di-murgia-aperitivo-di-puglia",
+            "badge": "Premium",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_iFifFz",
+        "product_43k3cK"
+      ],
+      "settings": {
+        "eyebrow": "SHOP",
+        "heading": "Catalogo.",
+        "intro": "<p>Bottiglie e box selezionati. Spedizione rapida in tutta Italia.</p>",
+        "background_color": "#efe2cf",
+        "text_color": "#24152e",
+        "accent_color": "#cba85e"
+      }
     }
   },
   "order": [
