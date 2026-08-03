@@ -16,6 +16,7 @@
           "type": "product",
           "settings": {
             "product": "murgia-aperitivo-di-puglia",
+            "custom_title": "",
             "badge": "Premium",
             "description": ""
           }
@@ -24,6 +25,7 @@
           "type": "product",
           "settings": {
             "product": "box-6-bottiglie-di-murgia-aperitivo-di-puglia",
+            "custom_title": "",
             "badge": "Premium",
             "description": ""
           }
