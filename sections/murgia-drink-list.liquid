@@ -147,6 +147,7 @@
   font-weight: 400;
   line-height: .95;
   letter-spacing: -.045em;
+  text-transform: none !important;
 }
 
 .murgia-drink-list__hero-intro {
@@ -211,16 +212,22 @@
 }
 
   .murgia-drink-list__content h2 {
-    max-width: 13ch;
-    margin: 0;
-    color: inherit;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(52px, 5vw, 80px);
-    font-style: normal;
-    font-weight: 400;
-    line-height: .98;
-    letter-spacing: -.045em;
-  }
+  max-width: none;
+  margin: 0;
+  color: inherit;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 4vw, 68px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.04em;
+  text-transform: none !important;
+  white-space: nowrap;
+}
+.murgia-drink-list__content h2 *,
+.murgia-drink-list__hero-title * {
+  text-transform: none !important;
+}
 
   .murgia-drink-list__difficulty {
     margin-top: 26px;
