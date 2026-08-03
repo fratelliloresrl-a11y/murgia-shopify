@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
+    "story": {
       "type": "murgia-story-page",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "story"
   ]
 }
