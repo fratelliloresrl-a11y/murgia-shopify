@@ -18,10 +18,10 @@
             "image": "shopify://shop_images/MURGASPRTZZZZ.png",
             "anchor": "",
             "title": "Murgia Spritz",
-            "tagline": "Il tramonto, servito in un calice.",
-            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
-            "link_label": "Scopri il cocktail",
-            "link": ""
+            "difficulty": 1,
+            "ingredients": "<p>•4 parti di Prosecco<br/>•1 parte di soda<br/>•1 parte di Murgia</p>",
+            "preparation": "<p><strong>1.</strong>Riempire un calice grande di ghiaccio<br/><strong>2.</strong>Versare prima Prosecco e soda<br/><strong>3.</strong>Completare con Murgia</p>",
+            "garnish": "Rametto di timo + fetta d’arancia"
           }
         },
         "cocktail_TYewc7": {
@@ -29,10 +29,10 @@
           "settings": {
             "anchor": "",
             "title": "Murgia Spritz",
-            "tagline": "Il tramonto, servito in un calice.",
-            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
-            "link_label": "Scopri il cocktail",
-            "link": ""
+            "difficulty": 2,
+            "ingredients": "",
+            "preparation": "",
+            "garnish": ""
           }
         },
         "cocktail_qAT6cn": {
@@ -40,10 +40,10 @@
           "settings": {
             "anchor": "",
             "title": "Murgia Spritz",
-            "tagline": "Il tramonto, servito in un calice.",
-            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
-            "link_label": "Scopri il cocktail",
-            "link": ""
+            "difficulty": 2,
+            "ingredients": "",
+            "preparation": "",
+            "garnish": ""
           }
         },
         "cocktail_JAKYU7": {
@@ -51,10 +51,10 @@
           "settings": {
             "anchor": "",
             "title": "Murgia Spritz",
-            "tagline": "Il tramonto, servito in un calice.",
-            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
-            "link_label": "Scopri il cocktail",
-            "link": ""
+            "difficulty": 2,
+            "ingredients": "",
+            "preparation": "",
+            "garnish": ""
           }
         },
         "cocktail_HgqfJU": {
@@ -62,10 +62,10 @@
           "settings": {
             "anchor": "",
             "title": "Murgia Spritz",
-            "tagline": "Il tramonto, servito in un calice.",
-            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
-            "link_label": "Scopri il cocktail",
-            "link": ""
+            "difficulty": 2,
+            "ingredients": "",
+            "preparation": "",
+            "garnish": ""
           }
         },
         "cocktail_6PizHh": {
@@ -73,10 +73,10 @@
           "settings": {
             "anchor": "",
             "title": "Murgia Spritz",
-            "tagline": "Il tramonto, servito in un calice.",
-            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
-            "link_label": "Scopri il cocktail",
-            "link": ""
+            "difficulty": 2,
+            "ingredients": "",
+            "preparation": "",
+            "garnish": ""
           }
         },
         "cocktail_XDCMVQ": {
@@ -84,10 +84,10 @@
           "settings": {
             "anchor": "",
             "title": "Murgia Spritz",
-            "tagline": "Il tramonto, servito in un calice.",
-            "profile": "<p>Fresco · Mediterraneo · Agrumato</p>",
-            "link_label": "Scopri il cocktail",
-            "link": ""
+            "difficulty": 2,
+            "ingredients": "",
+            "preparation": "",
+            "garnish": ""
           }
         }
       },
@@ -101,18 +101,10 @@
         "cocktail_XDCMVQ"
       ],
       "settings": {
-        "eyebrow": "DRINK LIST",
-        "heading": "Tre interpretazioni. Una sola anima.",
-        "intro": "<p>Ogni Twist racconta una sfumatura diversa della Puglia. Tre modi di vivere Murgia, tre identità, un solo carattere.</p>",
-        "profile_label": "PROFILO",
-        "final_heading": "",
-        "final_text": "<p>Scopri l'aperitivo che dà forma a ogni cocktail.</p>",
-        "final_button_label": "Scopri la bottiglia",
-        "final_button_link": "",
-        "background_color": "#3d285d",
         "light_background": "#efe2cf",
         "text_color": "#3d285d",
-        "accent_color": "#b97a8d"
+        "accent_color": "#b97a8d",
+        "line_color": "#d8c7b4"
       }
     }
   },
