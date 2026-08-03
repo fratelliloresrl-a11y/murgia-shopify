@@ -51,12 +51,13 @@
         "cocktail_JAKYU7": {
           "type": "cocktail",
           "settings": {
+            "image": "shopify://shop_images/COSMOPUGLTANO.png",
             "anchor": "",
-            "title": "Murgia Spritz",
-            "difficulty": 2,
-            "ingredients": "",
-            "preparation": "",
-            "garnish": ""
+            "title": "Cosmopuglitano",
+            "difficulty": 3,
+            "ingredients": "<p>• 4 cl vodka<br/>• 1,5 cl triple sec all’arancia<br/>• 1,5 cl succo di lime<br/>• 2 cl Aperitivo Murgia</p>",
+            "preparation": "<p><strong>1. </strong>Shakerare tutti gli ingredienti con ghiaccio<br/><strong>2. </strong>Effettuare un doppio filtraggio in una coppetta ghiacciata</p>",
+            "garnish": "Fiori + Arancia secca"
           }
         },
         "cocktail_HgqfJU": {
