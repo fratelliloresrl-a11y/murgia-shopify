@@ -48,6 +48,18 @@
             "garnish": "Arancia secca"
           }
         },
+        "cocktail_6PizHh": {
+          "type": "cocktail",
+          "settings": {
+            "image": "shopify://shop_images/GGNOFRZZ.png",
+            "anchor": "",
+            "title": "Gino Frizz",
+            "difficulty": 2,
+            "ingredients": "<p>• 4 cl di gin<br/>• 2 cl succo di limone<br/>• 2 cl Aperitivo Murgia<br/>• Tonica a riempire</p>",
+            "preparation": "<p><strong>1. </strong>Shakerare con ghiaccio gin, succo e Murgia<br/><strong>2. </strong>Effettuare un doppio filtraggio in un tumbler alto<br/><strong>3. </strong>Completare con tonica</p>",
+            "garnish": "Arancia secca"
+          }
+        },
         "cocktail_JAKYU7": {
           "type": "cocktail",
           "settings": {
@@ -71,38 +83,15 @@
             "preparation": "<p><strong>1. </strong>Shakerare con ghiaccio e albume<br/><strong>2. </strong>Aggiungere gin, succo e Murgia<br/><strong>3. </strong>Effettuare un doppio filtraggio in una coppetta ghiacciata</p>",
             "garnish": "3 gocce di olio EVO pugliese"
           }
-        },
-        "cocktail_6PizHh": {
-          "type": "cocktail",
-          "settings": {
-            "anchor": "",
-            "title": "Murgia Spritz",
-            "difficulty": 2,
-            "ingredients": "",
-            "preparation": "",
-            "garnish": ""
-          }
-        },
-        "cocktail_XDCMVQ": {
-          "type": "cocktail",
-          "settings": {
-            "anchor": "",
-            "title": "Murgia Spritz",
-            "difficulty": 2,
-            "ingredients": "",
-            "preparation": "",
-            "garnish": ""
-          }
         }
       },
       "block_order": [
         "cocktail_rfHDfq",
         "cocktail_TYewc7",
         "cocktail_qAT6cn",
-        "cocktail_JAKYU7",
-        "cocktail_HgqfJU",
         "cocktail_6PizHh",
-        "cocktail_XDCMVQ"
+        "cocktail_JAKYU7",
+        "cocktail_HgqfJU"
       ],
       "settings": {
         "light_background": "#efe2cf",
