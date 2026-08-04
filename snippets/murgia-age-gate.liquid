@@ -16,11 +16,16 @@
   <div class="murgia-age__veil"></div>
 
   <div class="murgia-age__card">
-    <img
-      class="murgia-age__logo"
-      src="{{ 'logo-murgia.png' | asset_url }}"
-      alt="{{ shop.name | escape }}"
-    >
+    {% if settings.logo != blank %}
+  {{
+    settings.logo
+    | image_url: width: 320
+    | image_tag:
+      class: 'murgia-age__logo',
+      loading: 'eager',
+      alt: shop.name
+  }}
+{% endif %}
 
     <h2>Hai l'età legale per consumare bevande alcoliche?</h2>
 
