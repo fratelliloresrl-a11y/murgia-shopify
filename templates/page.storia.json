@@ -11,7 +11,81 @@
   "sections": {
     "story": {
       "type": "murgia-story-page",
-      "settings": {}
+      "blocks": {
+        "chapter_terra": {
+          "type": "chapter",
+          "settings": {
+            "image": "",
+            "reverse": false,
+            "label": "LA TERRA",
+            "heading": "Il carattere della Puglia.",
+            "text": "<p>Una terra intensa, generosa e piena di contrasti. È da qui che nasce il profilo di Murgia: mediterraneo, aromatico e contemporaneo.</p><p>La luce, la pietra, gli ulivi e il vento raccontano un paesaggio autentico, capace di lasciare un segno profondo. Murgia nasce per portare questo carattere in ogni calice.</p>"
+          }
+        },
+        "chapter_visione": {
+          "type": "chapter",
+          "settings": {
+            "image": "",
+            "reverse": true,
+            "label": "LA VISIONE",
+            "heading": "Tradizione, senza nostalgia.",
+            "text": "<p>Abbiamo guardato alle botaniche della nostra terra con occhi nuovi, trasformandole in un aperitivo pensato per il presente.</p><p>Il nostro obiettivo non era ripetere ciò che esisteva già, ma costruire un gusto contemporaneo, riconoscibile e profondamente legato alle sue origini.</p>"
+          }
+        },
+        "chapter_botaniche": {
+          "type": "chapter",
+          "settings": {
+            "image": "",
+            "reverse": false,
+            "label": "LE BOTANICHE",
+            "heading": "La natura dentro la bottiglia.",
+            "text": "<p>Otto botaniche selezionate danno vita a un profilo fresco, aromatico e leggermente fruttato.</p><p>Ogni ingrediente contribuisce all'equilibrio finale: profumi mediterranei, note erbacee e una personalità capace di distinguersi fin dal primo sorso.</p>"
+          }
+        },
+        "chapter_colore": {
+          "type": "chapter",
+          "settings": {
+            "image": "",
+            "reverse": true,
+            "label": "IL COLORE",
+            "heading": "Viola per natura.",
+            "text": "<p>Il colore intenso di Murgia non nasce da un artificio, ma dalla natura. È il segno visibile di un aperitivo che non vuole passare inosservato.</p><p>Nel calice cambia, sorprende e diventa parte del rito: un dettaglio capace di trasformare anche il momento più semplice in un'esperienza.</p>"
+          }
+        },
+        "quote_manifesto": {
+          "type": "quote",
+          "settings": {
+            "label": "IL NOSTRO MANIFESTO",
+            "quote": "Murgia non segue le regole. Le riscrive."
+          }
+        }
+      },
+      "block_order": [
+        "chapter_terra",
+        "chapter_visione",
+        "chapter_botaniche",
+        "chapter_colore",
+        "quote_manifesto"
+      ],
+      "settings": {
+        "hero_image": "",
+        "hero_mobile_image": "",
+        "eyebrow": "LA NOSTRA STORIA",
+        "heading": "Una Puglia da bere.",
+        "hero_text": "<p>Murgia nasce dal desiderio di raccontare la Puglia attraverso un aperitivo contemporaneo, riconoscibile e profondamente mediterraneo.</p><p>Un prodotto che unisce territorio, botaniche e una nuova idea di convivialità.</p>",
+        "intro_label": "LE ORIGINI",
+        "intro_heading": "Un'idea nata qui.",
+        "intro_text": "<p>Non volevamo creare semplicemente un nuovo aperitivo. Volevamo dare forma a un'identità: il carattere della nostra terra, i suoi profumi e il suo modo spontaneo di stare insieme.</p><p>Da questa idea nasce Murgia, un incontro tra memoria e innovazione, pensato per raccontare la Puglia senza stereotipi e senza nostalgia.</p>",
+        "final_image": "",
+        "final_heading": "Il nuovo colore dell'aperitivo.",
+        "final_text": "<p>Un aperitivo che porta la Puglia in ogni calice, tra botaniche mediterranee e una visione nuova del gusto.</p><p>Da bere liscio, con ghiaccio o come protagonista di cocktail contemporanei.</p>",
+        "button_label": "Scopri Murgia",
+        "button_link": "",
+        "background_color": "#3d285d",
+        "light_background": "#efe2cf",
+        "text_color": "#3d285d",
+        "accent_color": "#d59aa5"
+      }
     }
   },
   "order": [
