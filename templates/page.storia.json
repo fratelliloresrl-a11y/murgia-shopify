@@ -9,58 +9,12 @@
  */
 {
   "sections": {
-    "story": {
+    "main": {
       "type": "murgia-story-page",
-      "blocks": {
-        "chapter_terra": {
-          "type": "chapter",
-          "settings": {
-            "reverse": false,
-            "label": "LA TERRA",
-            "heading": "Il carattere della Puglia.",
-            "text": "<p>Una terra intensa, generosa e piena di contrasti. È da qui che nasce il profilo di Murgia: mediterraneo, aromatico e contemporaneo.</p>"
-          }
-        },
-        "chapter_visione": {
-          "type": "chapter",
-          "settings": {
-            "reverse": true,
-            "label": "LA VISIONE",
-            "heading": "Tradizione, senza nostalgia.",
-            "text": "<p>Abbiamo guardato alle botaniche della nostra terra con occhi nuovi, trasformandole in un aperitivo pensato per il presente.</p>"
-          }
-        },
-        "quote_manifesto": {
-          "type": "quote",
-          "settings": {
-            "label": "IL NOSTRO MANIFESTO",
-            "quote": "Murgia non segue le regole. Le riscrive."
-          }
-        }
-      },
-      "block_order": [
-        "chapter_terra",
-        "chapter_visione",
-        "quote_manifesto"
-      ],
-      "settings": {
-        "eyebrow": "LA NOSTRA STORIA",
-        "heading": "Una Puglia da bere.",
-        "hero_text": "<p>Murgia nasce dal desiderio di raccontare la Puglia attraverso un aperitivo contemporaneo, riconoscibile e profondamente mediterraneo.</p>",
-        "intro_label": "LE ORIGINI",
-        "intro_heading": "Un'idea nata qui.",
-        "intro_text": "<p>Non volevamo creare semplicemente un nuovo aperitivo. Volevamo dare forma a un'identità: il carattere della nostra terra, i suoi profumi e il suo modo spontaneo di stare insieme.</p>",
-        "final_heading": "Il nuovo colore dell'aperitivo.",
-        "final_text": "<p>Un aperitivo che porta la Puglia in ogni calice, tra botaniche mediterranee e una visione nuova del gusto.</p>",
-        "button_label": "Scopri Murgia",
-        "background_color": "#3d285d",
-        "light_background": "#efe2cf",
-        "text_color": "#3d285d",
-        "accent_color": "#d59aa5"
-      }
+      "settings": {}
     }
   },
   "order": [
-    "story"
+    "main"
   ]
 }
