@@ -169,9 +169,13 @@ text-wrap: balance;
 max-width: 16ch;
 color: #fffaf2;
 
-  #MurgiaStory-{{ section.id }} .murgia-story__text-section {
-  background: var(--story-cream);
-  padding: clamp(85px, 9vw, 135px) 24px;
+  #MurgiaStory-{{ section.id }} .murgia-story__text {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  font-family: Inter, sans-serif;
+  font-size: clamp(17px, 1.2vw, 20px);
+  line-height: 1.8;
+  letter-spacing: 0;
 }
 
   #MurgiaStory-{{ section.id }} .murgia-story__text {
@@ -310,6 +314,16 @@ color: #fffaf2;
 letter-spacing:-.02em;
 }
   @media screen and (max-width: 749px) {
+    #MurgiaStory-{{ section.id }} .murgia-story__text-section {
+  padding: 64px 22px;
+}
+
+#MurgiaStory-{{ section.id }} .murgia-story__text {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
     #MurgiaStory-{{ section.id }} .murgia-story__hero {
       min-height: 70vh;
     }
