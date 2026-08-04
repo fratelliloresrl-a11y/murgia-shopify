@@ -11,7 +11,20 @@
   "sections": {
     "main": {
       "type": "murgia-story-page",
-      "settings": {}
+      "settings": {
+        "hero_image": "shopify://shop_images/Altare_C-86_26701754-75e3-4b29-b755-1457d16b30ed.jpg",
+        "hero_heading": "Ci sono storie che nascono lontano da casa, ma che parlano profondamente delle proprie radici.",
+        "intro_text": "<p>Quella de <strong>F.lli Lorè</strong> comincia a Milano, dove nel 2019 danno vita ad <em>AltaRè</em>, un luogo pensato per raccontare la Puglia attraverso l'ospitalità, i sapori e la convivialità. Non un semplice locale, ma un punto d'incontro tra due mondi: l'energia metropolitana e l'identità autentica della Puglia.</p><p>È proprio dietro al bancone di AltaRè che prende forma un'idea semplice quanto ambiziosa: creare un aperitivo che fosse davvero pugliese. Non un'interpretazione, ma una vera e propria alternativa all'aperitivo milanese.</p>",
+        "botanicals_image": "shopify://shop_images/ChatGPT_Image_5_giu_2026_19_23_52_1.png",
+        "botanicals_text": "<p>Nasce così un lungo percorso di ricerca. I fratelli Lorè iniziano a esplorare le botaniche autoctone della Puglia, selezionando ingredienti che potessero esprimere profumi, memoria e identità.</p><h3><em>Rosmarino, alloro, salvia, cardamomo, rosa, camomilla, amarena e pesca</em>.</h3><p>Elementi familiari, quotidiani, ma mai raccontati insieme in questo modo.</p>",
+        "second_text": "<p>Seguono anni di prove, ricette testate, bilanciamenti rivisti e assaggi condivisi con clienti e amici. Un processo fatto di ascolto e sensibilità, in cui ogni ingrediente trova il proprio spazio fino a raggiungere un equilibrio autentico.</p><p>Quella che nasce come un'esperienza interna al locale diventa presto qualcosa di più. I feedback positivi, l'entusiasmo dei clienti e il desiderio di portare quel racconto oltre le mura di AltaRè spingono i fratelli Lorè a fare un passo decisivo.</p><p>Così prende forma <strong>Il Murgia</strong>: il primo aperitivo che racchiude un vero concetto pugliese. Non solo un prodotto, ma una sintesi di territorio, ricerca e visione.</p>",
+        "manifesto": "Un aperitivo che nasce a Milano, ma che parla la lingua della Puglia.",
+        "closing_text": "…e che, sorso dopo sorso, invita a rallentare, condividere e ritrovare il senso più autentico dello stare insieme.",
+        "cream_color": "#f4ead8",
+        "purple_color": "#2d143f",
+        "gold_color": "#c9a35d",
+        "text_color": "#2d143f"
+      }
     }
   },
   "order": [
