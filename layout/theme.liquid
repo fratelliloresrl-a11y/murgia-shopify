@@ -6,6 +6,10 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
     {{ 'murgia.css' | asset_url | stylesheet_tag }}
     
     {%- if settings.favicon != blank -%}
