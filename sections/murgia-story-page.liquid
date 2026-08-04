@@ -281,15 +281,15 @@ body.template-page main#MainContent {
   }
 
   #MurgiaStory-{{ section.id }} .murgia-story__manifesto blockquote {
-   width: min(100%, 900px);
+  width: min(100%, 980px);
   margin: 0 auto;
-  font-family: var(--font-heading-family);
-  font-size: clamp(46px, 5vw, 68px);
+  color: #fffaf2;
+  font-family: var(--font-heading-family, Georgia, serif);
+  font-size: clamp(40px, 4.6vw, 64px);
   font-style: italic;
   font-weight: 400;
   line-height: 1.12;
-  letter-spacing: -.025em;
-  color: #F8F4EE;
+  letter-spacing: -0.035em;
 }
 
   #MurgiaStory-{{ section.id }} .murgia-story__closing {
@@ -299,17 +299,16 @@ body.template-page main#MainContent {
   }
 
   #MurgiaStory-{{ section.id }} .murgia-story__closing p {
-   width: min(100%, 860px);
-  margin: auto;
-  font-family: var(--font-heading-family);
-  font-size: clamp(28px, 3vw, 42px);
+  width: min(100%, 900px);
+  margin: 0 auto;
+  color: var(--story-ink);
+  font-family: var(--font-body-family, Arial, sans-serif);
+  font-size: clamp(24px, 2.4vw, 36px);
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.45;
-  letter-spacing: -.015em;
-  color: #2F1846;
+  letter-spacing: -0.015em;
 }
-
   @media screen and (max-width: 749px) {
     #MurgiaStory-{{ section.id }} .murgia-story__hero {
       min-height: 70vh;
