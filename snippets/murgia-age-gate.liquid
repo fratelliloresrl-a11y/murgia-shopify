@@ -1,0 +1,289 @@
+<div
+  class="murgia-age"
+  data-murgia-age-gate
+  data-days="30"
+  data-redirect="https://www.google.it"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Verifica dell'età"
+  hidden
+>
+  <div
+    class="murgia-age__bg"
+    style="background-image: url('{{ 'hero-bouquet.jpg' | asset_url }}');"
+  ></div>
+
+  <div class="murgia-age__veil"></div>
+
+  <div class="murgia-age__card">
+    <img
+      class="murgia-age__logo"
+      src="{{ 'logo-murgia.png' | asset_url }}"
+      alt="{{ shop.name | escape }}"
+    >
+
+    <h2>Hai l'età legale per consumare bevande alcoliche?</h2>
+
+    <p>
+      Per accedere al sito è necessario confermare di aver raggiunto
+      l'età legale prevista nel proprio Paese.
+    </p>
+
+    <div class="murgia-age__actions">
+      <button
+        type="button"
+        class="murgia-age__button murgia-age__button--yes"
+        data-age-yes
+      >
+        Sì, ho l'età legale
+      </button>
+
+      <button
+        type="button"
+        class="murgia-age__button murgia-age__button--no"
+        data-age-no
+      >
+        No
+      </button>
+    </div>
+
+    <div class="murgia-age__links">
+      <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">
+        Privacy
+      </a>
+
+      <a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">
+        Termini
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .murgia-age[hidden] {
+    display: none !important;
+  }
+
+  .murgia-age {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    overflow-y: auto;
+  }
+
+  .murgia-age__bg,
+  .murgia-age__veil {
+    position: absolute;
+    inset: 0;
+  }
+
+  .murgia-age__bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .murgia-age__veil {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(26, 12, 35, 0.88),
+        rgba(55, 31, 73, 0.68)
+      );
+    backdrop-filter: blur(5px);
+  }
+
+  .murgia-age__card {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 600px);
+    padding: clamp(38px, 6vw, 70px);
+    border: 1px solid rgba(203, 168, 94, 0.45);
+    background: rgba(244, 234, 216, 0.97);
+    color: #2d143f;
+    text-align: center;
+    box-shadow: 0 28px 90px rgba(15, 7, 22, 0.35);
+  }
+
+  .murgia-age__logo {
+    display: block;
+    width: min(220px, 65%);
+    height: auto;
+    margin: 0 auto 32px;
+  }
+
+  .murgia-age__card h2 {
+    max-width: 520px;
+    margin: 0 auto 22px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(34px, 5vw, 53px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  .murgia-age__card > p {
+    max-width: 460px;
+    margin: 0 auto;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .murgia-age__actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  .murgia-age__button {
+    min-height: 48px;
+    padding: 13px 24px;
+    border: 1px solid #2d143f;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .murgia-age__button:hover {
+    transform: translateY(-2px);
+  }
+
+  .murgia-age__button--yes {
+    background: #2d143f;
+    color: #fffaf2;
+  }
+
+  .murgia-age__button--no {
+    background: transparent;
+    color: #2d143f;
+  }
+
+  .murgia-age__links {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 30px;
+  }
+
+  .murgia-age__links a {
+    color: inherit;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  html.murgia-age-locked,
+  html.murgia-age-locked body {
+    overflow: hidden !important;
+  }
+
+  @media screen and (max-width: 600px) {
+    .murgia-age {
+      padding: 16px;
+    }
+
+    .murgia-age__card {
+      padding: 36px 22px;
+    }
+
+    .murgia-age__actions {
+      flex-direction: column;
+    }
+
+    .murgia-age__button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const gate = document.querySelector('[data-murgia-age-gate]');
+
+    if (!gate) return;
+
+    const storageKey = 'murgia_age_verified';
+    const acceptedAtKey = 'murgia_age_verified_at';
+    const durationDays = Number(gate.dataset.days || 30);
+    const redirectUrl = gate.dataset.redirect || 'https://www.google.it';
+
+    const yesButton = gate.querySelector('[data-age-yes]');
+    const noButton = gate.querySelector('[data-age-no]');
+
+    const durationMilliseconds =
+      durationDays * 24 * 60 * 60 * 1000;
+
+    const isVerified = () => {
+      try {
+        const verified = localStorage.getItem(storageKey);
+        const acceptedAt = Number(localStorage.getItem(acceptedAtKey));
+
+        if (verified !== 'true' || !acceptedAt) {
+          return false;
+        }
+
+        const stillValid =
+          Date.now() - acceptedAt < durationMilliseconds;
+
+        if (!stillValid) {
+          localStorage.removeItem(storageKey);
+          localStorage.removeItem(acceptedAtKey);
+        }
+
+        return stillValid;
+      } catch (error) {
+        return false;
+      }
+    };
+
+    const openGate = () => {
+      gate.hidden = false;
+      document.documentElement.classList.add('murgia-age-locked');
+
+      window.requestAnimationFrame(() => {
+        yesButton?.focus();
+      });
+    };
+
+    const closeGate = () => {
+      gate.hidden = true;
+      document.documentElement.classList.remove('murgia-age-locked');
+    };
+
+    if (isVerified()) {
+      closeGate();
+    } else {
+      openGate();
+    }
+
+    yesButton?.addEventListener('click', () => {
+      try {
+        localStorage.setItem(storageKey, 'true');
+        localStorage.setItem(acceptedAtKey, String(Date.now()));
+      } catch (error) {
+        // Il sito resta comunque accessibile nella sessione corrente.
+      }
+
+      closeGate();
+    });
+
+    noButton?.addEventListener('click', () => {
+      window.location.href = redirectUrl;
+    });
+  })();
+</script>
