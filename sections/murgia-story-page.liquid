@@ -364,43 +364,7 @@ letter-spacing:-.02em;
       font-size: clamp(34px, 10vw, 50px);
     }
   }
-  /* Margini definitivi per tutte le sezioni testuali */
-#MurgiaStory-{{ section.id }} .murgia-story__text-section {
-  padding-top: 110px !important;
-  padding-bottom: 110px !important;
-  padding-left: clamp(50px, 8vw, 140px) !important;
-  padding-right: clamp(50px, 8vw, 140px) !important;
-}
-
-#MurgiaStory-{{ section.id }} .murgia-story__text {
-  width: 100% !important;
-  max-width: 980px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Margini sui testi sovrapposti all’immagine botaniche */
-#MurgiaStory-{{ section.id }} .murgia-story__botanicals-content {
-  width: calc(100% - 100px) !important;
-  max-width: 980px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Versione mobile */
-@media screen and (max-width: 749px) {
-  #MurgiaStory-{{ section.id }} .murgia-story__text-section {
-    padding: 65px 24px !important;
-  }
-
-  #MurgiaStory-{{ section.id }} .murgia-story__text {
-    max-width: 100% !important;
-  }
-
-  #MurgiaStory-{{ section.id }} .murgia-story__botanicals-content {
-    width: calc(100% - 48px) !important;
-  }
-}
+ 
 </style>
 
 {% schema %}
