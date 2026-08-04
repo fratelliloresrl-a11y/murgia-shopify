@@ -181,9 +181,9 @@ body.template-page main#MainContent {
   max-width: 980px;
   margin: 0 auto;
   font-family: Inter, sans-serif;
-  font-size: clamp(17px, 1.2vw, 20px);
+  font-size: clamp(18px, 1.35vw, 22px);
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.85;
   letter-spacing: 0;
 }
 
@@ -240,20 +240,38 @@ body.template-page main#MainContent {
 }
 
 #MurgiaStory-{{ section.id }} .murgia-story__botanicals-content ul {
-  margin: 28px 0;
+  margin: 32px 0;
   padding: 0;
   list-style: none;
   columns: 2;
-  column-gap: 50px;
+  column-gap: clamp(35px, 6vw, 80px);
 }
 
 #MurgiaStory-{{ section.id }} .murgia-story__botanicals-content li {
-  margin-bottom: 12px;
+  margin: 0 0 14px;
+  break-inside: avoid;
   color: var(--story-gold);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(22px, 2vw, 30px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+#MurgiaStory-{{ section.id }} .murgia-story__botanicals-content li::marker {
+  content: "";
+}
+
+#MurgiaStory-{{ section.id }} .murgia-story__botanicals-content {
+  width: min(calc(100% - 48px), 920px);
+  margin: 0 auto;
+  color: #fffaf2;
+  font-family: Inter, sans-serif;
+  font-size: clamp(18px, 1.3vw, 21px);
+  font-weight: 400;
+  line-height: 1.85;
 }
 
   #MurgiaStory-{{ section.id }} .murgia-story__botanicals-content p {
@@ -319,8 +337,8 @@ letter-spacing:-.02em;
 
 #MurgiaStory-{{ section.id }} .murgia-story__text {
   width: 100%;
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 17px;
+  line-height: 1.8;
 }
 
     #MurgiaStory-{{ section.id }} .murgia-story__hero {
