@@ -43,9 +43,9 @@
             "anchor": "",
             "title": "Apulian Negroni",
             "difficulty": 2,
-            "ingredients": "<p>• 4 cl di gin<br/>• 2 cl succo di limone<br/>• 2 cl Aperitivo Murgia<br/>• Tonica a riempire</p>",
-            "preparation": "<p><strong>1. </strong>Shakerare con ghiaccio gin, succo e Murgia<br/><strong>2. </strong>Effettuare un doppio filtraggio in un tumbler alto<br/><strong>3. </strong>Completare con tonica</p>",
-            "garnish": "Arancia secca"
+            "ingredients": "<p>• 3 cl Gin London Dry<br/>• 2 cl Aperitivo Murgia<br/>• 3 cl bitter rosso<br/>• Ghiaccio grande</p>",
+            "preparation": "<p><strong>1. </strong>Preparare un mixing glass con ghiaccio<br/><strong>2. </strong>Versare gin, Murgia e bitter rosso<br/><strong>3. </strong>Mescolare con bar spoon per 20 secondi<br/><strong>4. </strong>Filtrare in un tumbler con ghiaccio grande</p>",
+            "garnish": "Twist d’arancia espresso"
           }
         },
         "cocktail_6PizHh": {
@@ -94,6 +94,9 @@
         "cocktail_HgqfJU"
       ],
       "settings": {
+        "eyebrow": "MIXOLOGY",
+        "heading": "Murgia Cocktails",
+        "intro": "<p>Twist sui grandi classici con Aperitivo Murgia.</p>",
         "light_background": "#efe2cf",
         "text_color": "#3d285d",
         "accent_color": "#b97a8d",
